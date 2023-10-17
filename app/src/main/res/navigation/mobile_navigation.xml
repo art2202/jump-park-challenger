@@ -7,19 +7,14 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.jumpparkchallenger.ui.home.HomeFragment"
+        android:name="com.example.jumpparkchallenger.presentation.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.jumpparkchallenger.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.example.jumpparkchallenger.presentation.cars_list.CarsListFragment"
+        android:label="@string/cars_list"
+        tools:layout="@layout/fragment_cars_list" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.jumpparkchallenger.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>

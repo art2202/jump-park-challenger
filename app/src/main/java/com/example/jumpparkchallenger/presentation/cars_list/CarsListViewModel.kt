@@ -1,13 +1,13 @@
-package com.example.jumpparkchallenger.ui.slideshow
+package com.example.jumpparkchallenger.presentation.cars_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class CarsListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "This is Cars List Fragment"
     }
     val text: LiveData<String> = _text
 }

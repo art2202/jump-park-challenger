@@ -1,4 +1,4 @@
-package com.example.jumpparkchallenger.ui.home
+package com.example.jumpparkchallenger.presentation.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
