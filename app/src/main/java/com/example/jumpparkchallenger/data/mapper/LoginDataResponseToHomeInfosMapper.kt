@@ -2,12 +2,12 @@ package com.example.jumpparkchallenger.data.mapper
 
 import com.example.jumpparkchallenger.data.models.LoginDataResponse
 import com.example.jumpparkchallenger.domain.entities.Establishment
-import com.example.jumpparkchallenger.domain.entities.Login
+import com.example.jumpparkchallenger.domain.entities.HomeInfos
 import com.example.jumpparkchallenger.domain.entities.Session
 import com.example.jumpparkchallenger.domain.entities.User
 
-class LoginDataResponseToLoginMapper : Mapper<LoginDataResponse, Login> {
-    override fun map(input: LoginDataResponse): Login {
+class LoginDataResponseToHomeInfosMapper : Mapper<LoginDataResponse, HomeInfos> {
+    override fun map(input: LoginDataResponse): HomeInfos {
         val user = User(
             input.userDataResponse?.id ?: 0,
             input.userDataResponse?.name ?: "",
@@ -24,6 +24,6 @@ class LoginDataResponseToLoginMapper : Mapper<LoginDataResponse, Login> {
             input.establishmentDataResponse?.vacanciesMarks ?: 0,
         )
 
-        return Login(user, session, establishment)
+        return HomeInfos(user, session, establishment)
     }
 }
