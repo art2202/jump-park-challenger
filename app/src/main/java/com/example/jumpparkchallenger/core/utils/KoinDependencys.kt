@@ -8,5 +8,8 @@ import org.koin.dsl.module
 
 val modules = module {
     single<ApiService> { RestApi.getRetrofit().create(ApiService::class.java) }
+
+    single{LoginDataResponseToLoginMapper()}
+
     single<LoginDataSource> { LoginDataSourceImpl(get()) }
 }
