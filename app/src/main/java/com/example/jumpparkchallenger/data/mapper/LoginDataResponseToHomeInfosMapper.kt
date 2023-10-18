@@ -19,9 +19,9 @@ class LoginDataResponseToHomeInfosMapper : Mapper<LoginDataResponse, HomeInfos> 
             input.sessionDataResponse?.establishmentId ?: 0
             )
         val establishment = Establishment(
-            input.establishmentDataResponse?.id ?: 0,
-            input.establishmentDataResponse?.name ?: "",
-            input.establishmentDataResponse?.vacanciesMarks ?: 0,
+            input.establishmentDataResponse[0]?.id ?: 0,
+            input.establishmentDataResponse[0]?.name ?: "",
+            input.establishmentDataResponse[0]?.vacanciesMarks ?: 0,
         )
 
         return HomeInfos(user, session, establishment)

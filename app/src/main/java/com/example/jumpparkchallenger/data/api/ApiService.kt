@@ -1,6 +1,7 @@
 package com.example.jumpparkchallenger.data.api
 
 import com.example.jumpparkchallenger.data.models.LoginDataResponse
+import com.example.jumpparkchallenger.data.models.ResponseData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -8,5 +9,5 @@ import retrofit2.http.POST
 interface ApiService {
 
     @POST("user/login")
-    suspend fun login(@Body body : Map<String, String>) : Response<LoginDataResponse>
+    suspend fun login(@Body body : Map<String, String>) : Response<ResponseData>
 }

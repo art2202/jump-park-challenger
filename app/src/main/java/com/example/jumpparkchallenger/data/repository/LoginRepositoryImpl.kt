@@ -16,4 +16,9 @@ class LoginRepositoryImpl(
             throw e
         }
     }
+
+    override suspend fun checkToken(): Boolean {
+        val token = loginDataSource.getLocalToken()
+        return token.isNotEmpty()
+    }
 }

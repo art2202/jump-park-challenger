@@ -21,6 +21,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.checkToken()
+        viewModel.tokenExists.observe(this){hasToken ->
+            if (hasToken) openHomeActivity()
+        }
+
         viewModel.responseHome.observe(this){info ->
             if(info != null) {
                 Toast.makeText(this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show()
@@ -29,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         }
         initListeners()
     }
+
 
     private fun openHomeActivity() {
         //passar infos aqui
