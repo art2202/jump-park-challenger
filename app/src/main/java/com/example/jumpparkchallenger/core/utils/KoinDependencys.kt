@@ -4,18 +4,26 @@ import androidx.room.Room
 import com.example.jumpparkchallenger.core.App
 import com.example.jumpparkchallenger.data.api.ApiService
 import com.example.jumpparkchallenger.data.api.RestApi
-import com.example.jumpparkchallenger.data.data_source.LoginDataSource
-import com.example.jumpparkchallenger.data.data_source.LoginDataSourceImpl
-import com.example.jumpparkchallenger.data.data_source.LoginLocalDataSource
-import com.example.jumpparkchallenger.data.data_source.LoginLocalDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.home.HomeDataSource
+import com.example.jumpparkchallenger.data.data_source.home.HomeDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.home.HomeLocalDataSource
+import com.example.jumpparkchallenger.data.data_source.home.HomeLocalDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.login.LoginDataSource
+import com.example.jumpparkchallenger.data.data_source.login.LoginDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSource
+import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSourceImpl
 import com.example.jumpparkchallenger.data.database.AppDatabase
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
+import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
+import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
+import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
+import com.example.jumpparkchallenger.presentation.home.HomeViewModel
 import com.example.jumpparkchallenger.presentation.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -30,15 +38,20 @@ val modules = module {
 
     single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
     single<LoginDataSource> { LoginDataSourceImpl(get()) }
+    single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
+    single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get()) }
 
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get()) }
 
     single{ Login(get()) }
     single { CheckToken(get()) }
+    single { LoadHomeInfo(get()) }
 }
 
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
+    viewModel { HomeViewModel(get()) }
 }
 
 val databaseModule = module {
