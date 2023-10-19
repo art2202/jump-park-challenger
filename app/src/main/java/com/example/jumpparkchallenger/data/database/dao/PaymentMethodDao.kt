@@ -11,7 +11,7 @@ import com.example.jumpparkchallenger.data.database.entity.PaymentMethodEntity
 interface PaymentMethodDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPaymentMethod(paymentMethod: PaymentMethodEntity): Long
+    fun insertPaymentMethod(paymentMethod: PaymentMethodEntity)
 
     @Query("SELECT * FROM payment_method")
     fun getAll() : List<PaymentMethodEntity>

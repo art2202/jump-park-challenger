@@ -11,7 +11,7 @@ import com.example.jumpparkchallenger.data.database.entity.ValueDetailEntity
 interface ValueDetailDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertValueDetail(valueDetail: ValueDetailEntity): Long
+     fun insertValueDetail(valueDetail: ValueDetailEntity)
 
     @Query("SELECT * FROM value_detail WHERE id = :tablePriceId")
      fun getValueDetailsByPriceId(tablePriceId: Int): List<ValueDetailEntity>

@@ -11,7 +11,7 @@ import com.example.jumpparkchallenger.data.database.entity.PriceEntity
 interface PriceDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertPrice(price: PriceEntity): Long
+     fun insertPrice(price: PriceEntity)
 
     @Query("SELECT * FROM price WHERE id = :establishmentId")
      fun getPriceByEstablishmentId(establishmentId: Int): PriceEntity?

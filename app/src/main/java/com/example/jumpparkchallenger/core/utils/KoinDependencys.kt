@@ -57,7 +57,7 @@ val dataSourceModule = module{
     single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
     single<LoginDataSource> { LoginDataSourceImpl(get()) }
     single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
-    single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get()) }
+    single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -68,7 +68,7 @@ val mapperModule = module{
     single { PaymentMethodEntityToPaymentMethodMapper() }
 
     single { PricesResponseToPriceEntityMapper() }
-    single { PriceEntityToPriceMapper(get(), get()) }
+    single { PriceEntityToPriceMapper(get()) }
 
     single { ValueResponseToValueEntityMapper(get()) }
     single { ValueDetailEntityToValueDetailMapper() }
@@ -76,7 +76,7 @@ val mapperModule = module{
 }
 val repositoryModule = module{
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
-    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
