@@ -2,16 +2,22 @@ package com.example.jumpparkchallenger.data.data_source
 
 import com.example.jumpparkchallenger.core.utils.SharedPreferenceHelper
 import com.example.jumpparkchallenger.data.database.AppDatabase
+import com.example.jumpparkchallenger.data.database.dao.EstablishmentDao
+import com.example.jumpparkchallenger.data.database.dao.UserDao
 import com.example.jumpparkchallenger.data.database.entity.EstablishmentEntity
 import com.example.jumpparkchallenger.data.database.entity.UserEntity
 import com.example.jumpparkchallenger.data.models.EstablishmentDataResponse
 import com.example.jumpparkchallenger.data.models.LoginDataResponse
 import com.example.jumpparkchallenger.data.models.UserDataResponse
 
-class LoginLocalDataSourceImpl(private val sharedPreferenceHelper: SharedPreferenceHelper) : LoginLocalDataSource {
+class LoginLocalDataSourceImpl(
+    private val sharedPreferenceHelper: SharedPreferenceHelper,
+    private val userDao: UserDao,
+    private val establishmentDao: EstablishmentDao
+) : LoginLocalDataSource {
 
-    private val userDao = AppDatabase.getDatabase()!!.userDao()
-    private val establishmentDao = AppDatabase.getDatabase()!!.establishmentDao()
+//    private val establishmentDao = AppDatabase.getDatabase()!!.establishmentDao()
+//    private val userDao = AppDatabase.getDatabase()?.userDao()
 
     override suspend fun saveData(
         userEntity: UserEntity,
@@ -23,7 +29,9 @@ class LoginLocalDataSourceImpl(private val sharedPreferenceHelper: SharedPrefere
         saveToken(token)
     }
 
-    private suspend fun saveUser(userEntity: UserEntity) = userDao.insertUser(userEntity)
+    private suspend fun saveUser(userEntity: UserEntity) {
+        userDao.insertUser(userEntity)
+    }
 
     private suspend fun saveEstablishment(establishmentEntity: EstablishmentEntity) {
         establishmentDao.insertEstablishment(establishmentEntity)
