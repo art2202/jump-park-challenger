@@ -15,7 +15,13 @@ import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSourc
 import com.example.jumpparkchallenger.data.database.AppDatabase
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
+import com.example.jumpparkchallenger.data.mapper.PaymentMethodEntityToPaymentMethodMapper
+import com.example.jumpparkchallenger.data.mapper.PaymentMethodResponseToPaymentMethodEntityMapper
+import com.example.jumpparkchallenger.data.mapper.PriceEntityToPriceMapper
+import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
+import com.example.jumpparkchallenger.data.mapper.ValueDetailEntityToValueDetailMapper
+import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
 import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
@@ -43,6 +49,9 @@ val databaseModule = module {
 
     single { get<AppDatabase>().userDao() }
     single { get<AppDatabase>().establishmentDao() }
+    single { get<AppDatabase>().PriceDao() }
+    single { get<AppDatabase>().PaymentMethodDao() }
+    single { get<AppDatabase>().ValueDetailDao() }
 }
 val dataSourceModule = module{
     single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
@@ -51,13 +60,23 @@ val dataSourceModule = module{
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get()) }
 }
 val mapperModule = module{
-    single{LoginDataResponseToHomeInfosMapper()}
+    single { LoginDataResponseToHomeInfosMapper() }
     single { UserDataResponseToUserEntityMapper() }
     single { EstablishmentDataResponseToEstablishmentEntityMapper() }
+
+    single { PaymentMethodResponseToPaymentMethodEntityMapper() }
+    single { PaymentMethodEntityToPaymentMethodMapper() }
+
+    single { PricesResponseToPriceEntityMapper() }
+    single { PriceEntityToPriceMapper(get(), get()) }
+
+    single { ValueResponseToValueEntityMapper(get()) }
+    single { ValueDetailEntityToValueDetailMapper() }
+
 }
 val repositoryModule = module{
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
-    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get(), get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }

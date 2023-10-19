@@ -5,15 +5,24 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.jumpparkchallenger.core.App
 import com.example.jumpparkchallenger.data.database.dao.EstablishmentDao
+import com.example.jumpparkchallenger.data.database.dao.PaymentMethodDao
+import com.example.jumpparkchallenger.data.database.dao.PriceDao
 import com.example.jumpparkchallenger.data.database.dao.UserDao
+import com.example.jumpparkchallenger.data.database.dao.ValueDetailDao
 import com.example.jumpparkchallenger.data.database.entity.EstablishmentEntity
+import com.example.jumpparkchallenger.data.database.entity.PaymentMethodEntity
+import com.example.jumpparkchallenger.data.database.entity.PriceEntity
 import com.example.jumpparkchallenger.data.database.entity.UserEntity
+import com.example.jumpparkchallenger.data.database.entity.ValueDetailEntity
 
 
 @Database(
     entities = [
         UserEntity::class,
-        EstablishmentEntity::class
+        EstablishmentEntity::class,
+        PriceEntity::class,
+        PaymentMethodEntity::class,
+        ValueDetailEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -22,5 +31,11 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao() : UserDao
     abstract fun establishmentDao() : EstablishmentDao
+
+    abstract fun PaymentMethodDao() : PaymentMethodDao
+
+    abstract fun PriceDao() : PriceDao
+
+    abstract fun ValueDetailDao() : ValueDetailDao
 
 }
