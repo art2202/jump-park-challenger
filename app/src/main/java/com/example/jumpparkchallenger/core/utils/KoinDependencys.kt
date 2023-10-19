@@ -4,6 +4,8 @@ import androidx.room.Room
 import com.example.jumpparkchallenger.core.App
 import com.example.jumpparkchallenger.data.api.ApiService
 import com.example.jumpparkchallenger.data.api.RestApi
+import com.example.jumpparkchallenger.data.data_source.checkin.CheckInDataSource
+import com.example.jumpparkchallenger.data.data_source.checkin.CheckInDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.home.HomeDataSource
 import com.example.jumpparkchallenger.data.data_source.home.HomeDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.home.HomeLocalDataSource
@@ -22,13 +24,17 @@ import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMap
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
 import com.example.jumpparkchallenger.data.mapper.ValueDetailEntityToValueDetailMapper
 import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
+import com.example.jumpparkchallenger.data.repository.CheckInRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
+import com.example.jumpparkchallenger.domain.repository.CheckInRepository
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
+import com.example.jumpparkchallenger.domain.usecases.GetPrices
 import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
+import com.example.jumpparkchallenger.presentation.checkin.CheckInViewModel
 import com.example.jumpparkchallenger.presentation.home.HomeViewModel
 import com.example.jumpparkchallenger.presentation.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -58,6 +64,7 @@ val dataSourceModule = module{
     single<LoginDataSource> { LoginDataSourceImpl(get()) }
     single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
+    single<CheckInDataSource> { CheckInDataSourceImpl(get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -76,15 +83,18 @@ val mapperModule = module{
 }
 val repositoryModule = module{
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
-    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
+    single<CheckInRepository> { CheckInRepositoryImpl(get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
     single { CheckToken(get()) }
     single { LoadHomeInfo(get()) }
+    single { GetPrices(get()) }
 }
 
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
+    viewModel { CheckInViewModel(get()) }
 }

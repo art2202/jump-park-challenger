@@ -16,7 +16,6 @@ class HomeRepositoryImpl(
     private val homeDataSource: HomeDataSource,
     private val homeLocalDataSource: HomeLocalDataSource,
     private val pricesResponseToPriceEntityMapper: PricesResponseToPriceEntityMapper,
-    private val priceEntityToPriceMapper: PriceEntityToPriceMapper,
     private val paymentMethodResponseToPaymentMethodEntityMapper: PaymentMethodResponseToPaymentMethodEntityMapper,
     private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper,
     private val valueResponseToValueEntityMapper: ValueResponseToValueEntityMapper
