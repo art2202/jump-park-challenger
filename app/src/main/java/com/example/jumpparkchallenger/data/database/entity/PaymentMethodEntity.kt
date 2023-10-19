@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "payment_method")
 data class PaymentMethodEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int? = null,
 
     val name: String?

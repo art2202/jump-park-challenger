@@ -13,6 +13,9 @@ interface PaymentMethodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPaymentMethod(paymentMethod: PaymentMethodEntity): Long
 
+    @Query("SELECT * FROM payment_method")
+    fun getAll() : List<PaymentMethodEntity>
+
     @Query("SELECT * FROM payment_method WHERE id = :id")
     fun getPaymentMethod(id: Int): PaymentMethodEntity?
 
