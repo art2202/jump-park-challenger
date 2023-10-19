@@ -1,11 +1,7 @@
-package com.example.jumpparkchallenger.data.data_source
+package com.example.jumpparkchallenger.data.data_source.login
 
-import com.example.jumpparkchallenger.core.utils.SharedPreferenceHelper
 import com.example.jumpparkchallenger.data.api.ApiService
-import com.example.jumpparkchallenger.data.database.AppDatabase
-import com.example.jumpparkchallenger.data.models.EstablishmentDataResponse
 import com.example.jumpparkchallenger.data.models.LoginDataResponse
-import com.example.jumpparkchallenger.data.models.UserDataResponse
 
 class LoginDataSourceImpl(
     private val apiService: ApiService,

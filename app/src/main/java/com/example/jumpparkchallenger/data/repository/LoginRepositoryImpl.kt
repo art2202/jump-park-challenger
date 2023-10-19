@@ -1,7 +1,7 @@
 package com.example.jumpparkchallenger.data.repository
 
-import com.example.jumpparkchallenger.data.data_source.LoginDataSource
-import com.example.jumpparkchallenger.data.data_source.LoginLocalDataSource
+import com.example.jumpparkchallenger.data.data_source.login.LoginDataSource
+import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSource
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper

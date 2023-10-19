@@ -7,7 +7,7 @@ class UserDataResponseToUserEntityMapper : Mapper<UserDataResponse, UserEntity> 
 
     override fun map(input: UserDataResponse): UserEntity {
         return UserEntity(
-            id = input.id,
+            id = input.id ?: 0,
             name = input.name,
             email = input.email
         )

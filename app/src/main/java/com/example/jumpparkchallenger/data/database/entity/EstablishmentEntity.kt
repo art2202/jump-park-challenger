@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "establishment")
 data class EstablishmentEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    @PrimaryKey
+    val id: Int,
     val name: String?,
     @ColumnInfo(name = "vacancies")
     val vacanciesMarks: Int?

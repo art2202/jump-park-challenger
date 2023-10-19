@@ -1,4 +1,4 @@
-package com.example.jumpparkchallenger.data.data_source
+package com.example.jumpparkchallenger.data.data_source.login
 
 import com.example.jumpparkchallenger.data.models.LoginDataResponse
 

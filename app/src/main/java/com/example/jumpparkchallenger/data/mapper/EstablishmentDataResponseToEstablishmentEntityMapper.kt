@@ -8,7 +8,7 @@ class EstablishmentDataResponseToEstablishmentEntityMapper : Mapper<Establishmen
 
     override fun map(input: EstablishmentDataResponse): EstablishmentEntity {
         return EstablishmentEntity(
-            id = input.id,
+            id = input.id ?: 0,
             name = input.name,
             vacanciesMarks = input.vacanciesMarks
         )
