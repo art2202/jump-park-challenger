@@ -10,7 +10,6 @@ import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMap
 import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
 import com.example.jumpparkchallenger.data.models.home.HomeData
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
-import com.example.jumpparkchallenger.domain.entities.home.Price
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 
 class HomeRepositoryImpl(
@@ -22,24 +21,19 @@ class HomeRepositoryImpl(
     private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper,
     private val valueResponseToValueEntityMapper: ValueResponseToValueEntityMapper
 ) : HomeRepository {
-    override suspend fun getData(): Pair<List<Price>, List<PaymentMethod>> {
+    override suspend fun getData(): List<PaymentMethod> {
 
         val userEntity = homeLocalDataSource.getUser()
         val establishmentEntity = homeLocalDataSource.getEstablishment()
         val data = homeDataSource.getData(userEntity?.id ?: 0, establishmentEntity?.id ?: 0)
         save(data)
-        return getDatabaseInfo()
+        return getPaymentMethods()
     }
 
-    private suspend fun getDatabaseInfo(): Pair<List<Price>, List<PaymentMethod>> {
-        val pricesEntity = homeLocalDataSource.getPrices()
+    private suspend fun getPaymentMethods(): List<PaymentMethod> {
         val paymentMethodsEntities = homeLocalDataSource.getPaymentMethodEntity()
-        val valuesDetails = pricesEntity.map { homeLocalDataSource.getValueDetail(it.id!!) }.flatten()
 
-        val prices = pricesEntity.map { priceEntityToPriceMapper.map(Pair(it, valuesDetails)) }
-        val paymentMethods = paymentMethodsEntities.map { paymentMethodEntityToPaymentMethodMapper.map(it) }
-
-        return Pair(prices, paymentMethods)
+        return paymentMethodsEntities.map { paymentMethodEntityToPaymentMethodMapper.map(it) }
     }
 
     private suspend fun save(data: HomeData) {

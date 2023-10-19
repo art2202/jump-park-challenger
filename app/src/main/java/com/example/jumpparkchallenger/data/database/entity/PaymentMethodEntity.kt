@@ -8,5 +8,7 @@ data class PaymentMethodEntity(
     @PrimaryKey
     val id: Int? = null,
 
-    val name: String?
+    val name: String?,
+
+    val total : Double = 0.0
 )
