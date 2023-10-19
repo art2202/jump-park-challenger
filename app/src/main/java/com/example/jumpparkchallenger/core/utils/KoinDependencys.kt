@@ -28,32 +28,10 @@ import com.example.jumpparkchallenger.presentation.login.LoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val modules = module {
+val utilsModule = module {
     single<ApiService> { RestApi.getRetrofit().create(ApiService::class.java) }
     single { SharedPreferenceHelper(get()) }
-
-    single{LoginDataResponseToHomeInfosMapper()}
-    single { UserDataResponseToUserEntityMapper() }
-    single { EstablishmentDataResponseToEstablishmentEntityMapper() }
-
-    single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
-    single<LoginDataSource> { LoginDataSourceImpl(get()) }
-    single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
-    single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get()) }
-
-    single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
-    single<HomeRepository> { HomeRepositoryImpl(get(), get()) }
-
-    single{ Login(get()) }
-    single { CheckToken(get()) }
-    single { LoadHomeInfo(get()) }
 }
-
-val viewModelModule = module {
-    viewModel { LoginViewModel(get(), get()) }
-    viewModel { HomeViewModel(get()) }
-}
-
 val databaseModule = module {
     single {
         Room.databaseBuilder(
@@ -65,4 +43,29 @@ val databaseModule = module {
 
     single { get<AppDatabase>().userDao() }
     single { get<AppDatabase>().establishmentDao() }
+}
+val dataSourceModule = module{
+    single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
+    single<LoginDataSource> { LoginDataSourceImpl(get()) }
+    single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
+    single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get()) }
+}
+val mapperModule = module{
+    single{LoginDataResponseToHomeInfosMapper()}
+    single { UserDataResponseToUserEntityMapper() }
+    single { EstablishmentDataResponseToEstablishmentEntityMapper() }
+}
+val repositoryModule = module{
+    single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get()) }
+}
+val useCaseModule = module {
+    single{ Login(get()) }
+    single { CheckToken(get()) }
+    single { LoadHomeInfo(get()) }
+}
+
+val viewModelModule = module {
+    viewModel { LoginViewModel(get(), get()) }
+    viewModel { HomeViewModel(get()) }
 }
