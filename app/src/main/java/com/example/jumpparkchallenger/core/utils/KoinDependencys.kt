@@ -70,7 +70,7 @@ val mapperModule = module{
     single { PricesResponseToPriceEntityMapper() }
     single { PriceEntityToPriceMapper(get()) }
 
-    single { ValueResponseToValueEntityMapper(get()) }
+    single { ValueResponseToValueEntityMapper() }
     single { ValueDetailEntityToValueDetailMapper() }
 
 }

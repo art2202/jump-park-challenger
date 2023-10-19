@@ -39,8 +39,10 @@ class HomeRepositoryImpl(
     private suspend fun save(data: HomeData) {
 
         var valuesEntitys : List<ValueDetailEntity>? = null
-        data.pricesResponseData.forEach {
-            valuesEntitys = it!!.values.map {values -> valueResponseToValueEntityMapper.map(values) }
+        data.pricesResponseData.forEach { priceEntity ->
+            valuesEntitys = priceEntity!!.values.map {
+                    values -> valueResponseToValueEntityMapper.map(Pair(priceEntity.id ?: 0, values))
+            }
         }
         val pricesEntitys = data.pricesResponseData.map {
             pricesResponseToPriceEntityMapper.map(it!!)
