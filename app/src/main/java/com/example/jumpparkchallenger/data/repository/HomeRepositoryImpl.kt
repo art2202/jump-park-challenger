@@ -38,10 +38,11 @@ class HomeRepositoryImpl(
 
     private suspend fun save(data: HomeData) {
 
-        var valuesEntitys : List<ValueDetailEntity>? = null
-        data.pricesResponseData.forEach { priceEntity ->
-            valuesEntitys = priceEntity!!.values.map {
-                    values -> valueResponseToValueEntityMapper.map(Pair(priceEntity.id ?: 0, values))
+        val valuesEntitys : MutableList<ValueDetailEntity> = mutableListOf()
+
+        data.pricesResponseData.forEach { priceDataResponse ->
+            priceDataResponse?.values?.forEach { valueResponseData ->
+                valuesEntitys.add(valueResponseToValueEntityMapper.map(valueResponseData))
             }
         }
         val pricesEntitys = data.pricesResponseData.map {
@@ -53,6 +54,6 @@ class HomeRepositoryImpl(
 
         pricesEntitys.forEach { homeLocalDataSource.insertPrice(it) }
         paymentsMethodsEntity.forEach { homeLocalDataSource.insertPaymentMethod(it) }
-        valuesEntitys?.forEach { homeLocalDataSource.insertValueDetail(it) }
+        valuesEntitys.forEach { homeLocalDataSource.insertValueDetail(it) }
     }
 }

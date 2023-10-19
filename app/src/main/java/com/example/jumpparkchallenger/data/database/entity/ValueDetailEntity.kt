@@ -9,20 +9,21 @@ import androidx.room.PrimaryKey
     tableName = "value_detail",
     foreignKeys = [ForeignKey(
         entity = PriceEntity::class,
-        parentColumns = ["id"],
-        childColumns = ["table_price_id"],
+        parentColumns = ["price_type"],
+        childColumns = ["price_type"],
         onDelete = ForeignKey.CASCADE
     )]
 )
 data class ValueDetailEntity(
+
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
 
     val price: String?,
+
     val period: Int?,
+
     @ColumnInfo(name = "price_type")
     val priceType: String?,
 
-    @ColumnInfo(name = "table_price_id")
-    val tablePriceId: Int
 )

@@ -13,8 +13,8 @@ interface PriceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun insertPrice(price: PriceEntity)
 
-    @Query("SELECT * FROM price WHERE id = :establishmentId")
-     fun getPriceByEstablishmentId(establishmentId: Int): PriceEntity?
+    @Query("SELECT * FROM price WHERE price_type = :priceType")
+     fun getPriceByPriceType(priceType: String): PriceEntity?
 
     @Query("SELECT * FROM price")
      fun getAllPrices(): List<PriceEntity>

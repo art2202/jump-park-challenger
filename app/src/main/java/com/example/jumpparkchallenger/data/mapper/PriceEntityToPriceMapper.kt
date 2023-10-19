@@ -10,11 +10,10 @@ class PriceEntityToPriceMapper(
 
     override fun map(input: Pair<PriceEntity, List<ValueDetailEntity>>): Price {
 
-        val valueDetails = input.second.filter { it.tablePriceId == input.first.id }
+        val valueDetails = input.second.filter { it.priceType == input.first.priceType }
             .map { valueDetailEntityToDomainMapper.map(it) }
 
         return Price(
-            establishmentId = input.first.id,
             priceType = input.first.priceType,
             tolerance = input.first.tolerance,
             maximumPeriod = input.first.maximumPeriod,

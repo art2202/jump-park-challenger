@@ -4,13 +4,12 @@ import com.example.jumpparkchallenger.data.database.entity.ValueDetailEntity
 import com.example.jumpparkchallenger.data.models.home.ValueResponseData
 
 class ValueResponseToValueEntityMapper :
-    Mapper<Pair<Int, ValueResponseData>, ValueDetailEntity> {
-    override fun map(input: Pair<Int, ValueResponseData>): ValueDetailEntity {
+    Mapper<ValueResponseData, ValueDetailEntity> {
+    override fun map(input: ValueResponseData): ValueDetailEntity {
         return ValueDetailEntity(
-            price = input.second.price,
-            period = input.second.period,
-            priceType = input.second.type,
-            tablePriceId = input.first
+            price = input.price,
+            period = input.period,
+            priceType = input.type,
         )
     }
 }

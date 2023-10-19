@@ -6,11 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "price")
 data class PriceEntity(
-    @PrimaryKey
-    val id: Int?,
 
+    @PrimaryKey
     @ColumnInfo(name = "price_type")
-    val priceType: String?,
+    val priceType: String,
 
     val tolerance: Int?,
     @ColumnInfo(name = "maximum_period")
