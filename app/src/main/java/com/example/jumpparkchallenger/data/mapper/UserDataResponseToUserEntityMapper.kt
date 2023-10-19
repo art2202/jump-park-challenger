@@ -1,7 +1,7 @@
 package com.example.jumpparkchallenger.data.mapper
 
 import com.example.jumpparkchallenger.data.database.entity.UserEntity
-import com.example.jumpparkchallenger.data.models.UserDataResponse
+import com.example.jumpparkchallenger.data.models.login.UserDataResponse
 
 class UserDataResponseToUserEntityMapper : Mapper<UserDataResponse, UserEntity> {
 

@@ -1,4 +1,4 @@
-package com.example.jumpparkchallenger.data.models
+package com.example.jumpparkchallenger.data.models.login
 
 class ResponseData(
     val response : String?,

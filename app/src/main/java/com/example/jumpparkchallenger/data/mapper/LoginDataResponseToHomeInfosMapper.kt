@@ -1,6 +1,6 @@
 package com.example.jumpparkchallenger.data.mapper
 
-import com.example.jumpparkchallenger.data.models.LoginDataResponse
+import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
 import com.example.jumpparkchallenger.domain.entities.Establishment
 import com.example.jumpparkchallenger.domain.entities.HomeInfos
 import com.example.jumpparkchallenger.domain.entities.Session

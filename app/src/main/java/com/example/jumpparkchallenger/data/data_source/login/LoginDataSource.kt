@@ -1,6 +1,6 @@
 package com.example.jumpparkchallenger.data.data_source.login
 
-import com.example.jumpparkchallenger.data.models.LoginDataResponse
+import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
 
 interface LoginDataSource {
 

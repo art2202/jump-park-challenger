@@ -5,7 +5,7 @@ import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSourc
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
-import com.example.jumpparkchallenger.data.models.LoginDataResponse
+import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
 import com.example.jumpparkchallenger.domain.entities.HomeInfos
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 
