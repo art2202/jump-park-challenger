@@ -9,15 +9,14 @@ import com.example.jumpparkchallenger.data.database.entity.UserEntity
 interface UserDao {
 
     @Insert
-    suspend fun insertUser(user: UserEntity): Long
+    fun insertUser(user: UserEntity): Long
 
     @Query("SELECT * FROM user LIMIT 1")
-    suspend fun getUser(): UserEntity?
+    fun getUser(): UserEntity?
 
     @Delete
-    suspend fun deleteUser(user: UserEntity)
+    fun deleteUser(user: UserEntity)
 
-    // Se você preferir deletar todos os usuários sem passar um específico:
     @Query("DELETE FROM user")
-    suspend fun deleteAllUsers()
+    fun deleteAllUsers()
 }

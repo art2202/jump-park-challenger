@@ -10,15 +10,15 @@ import com.example.jumpparkchallenger.data.database.entity.EstablishmentEntity
 interface EstablishmentDao {
 
     @Insert
-    suspend fun insertEstablishment(establishment: EstablishmentEntity): Long
+    fun insertEstablishment(establishment: EstablishmentEntity): Long
 
     @Query("SELECT * FROM establishment LIMIT 1")
-    suspend fun getEstablishment(): EstablishmentEntity?
+    fun getEstablishment(): EstablishmentEntity?
 
     @Delete
-    suspend fun deleteEstablishment(establishment: EstablishmentEntity)
+    fun deleteEstablishment(establishment: EstablishmentEntity)
 
     // Se você preferir deletar todos os estabelecimentos sem passar um específico:
     @Query("DELETE FROM establishment")
-    suspend fun deleteAllEstablishments()
+    fun deleteAllEstablishments()
 }
