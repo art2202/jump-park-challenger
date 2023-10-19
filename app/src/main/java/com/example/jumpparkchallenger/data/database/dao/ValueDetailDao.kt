@@ -13,8 +13,8 @@ interface ValueDetailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun insertValueDetail(valueDetail: ValueDetailEntity)
 
-    @Query("SELECT * FROM value_detail WHERE id = :tablePriceId")
-     fun getValueDetailsByPriceId(tablePriceId: Int): List<ValueDetailEntity>
+    @Query("SELECT * FROM value_detail WHERE price_type = :priceType")
+     fun getValueDetailsByPriceId(priceType: String): List<ValueDetailEntity>
 
     @Delete
      fun deleteValueDetail(valueDetail: ValueDetailEntity)

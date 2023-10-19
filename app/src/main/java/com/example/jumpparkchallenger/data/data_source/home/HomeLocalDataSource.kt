@@ -20,7 +20,7 @@ interface HomeLocalDataSource {
 
     suspend fun getPaymentMethodEntity() : List<PaymentMethodEntity>
 
-    suspend fun getValueDetail(id: Int): List<ValueDetailEntity>
+    suspend fun getValueDetail(priceType : String): List<ValueDetailEntity>
 
     suspend fun getUser() : UserEntity?
 

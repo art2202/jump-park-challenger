@@ -35,8 +35,8 @@ class HomeLocalDataSourceImpl(private val userDao: UserDao,
         return paymentMethodDao.getAll()
     }
 
-    override suspend fun getValueDetail(id: Int): List<ValueDetailEntity> {
-        return valueDetailDao.getValueDetailsByPriceId(id)
+    override suspend fun getValueDetail(priceType : String): List<ValueDetailEntity> {
+        return valueDetailDao.getValueDetailsByPriceId(priceType)
     }
 
     override suspend fun getUser(): UserEntity? = userDao.getUser()
