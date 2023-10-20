@@ -11,6 +11,7 @@ import com.example.jumpparkchallenger.databinding.ActivityCheckInBinding
 import com.example.jumpparkchallenger.domain.entities.Vehicle
 import com.example.jumpparkchallenger.domain.entities.home.Price
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Date
 
 class CheckInActivity : AppCompatActivity() {
 
@@ -53,10 +54,10 @@ class CheckInActivity : AppCompatActivity() {
                 binding.editTextPlate.text.toString(),
                 binding.editTextModel.text.toString(),
                 binding.editTextColor.text.toString(),
-                viewModel.prices[binding.spinner.selectedItemPosition]
+                viewModel.prices[binding.spinner.selectedItemPosition],
+                Date()
             )
             viewModel.save(vehicle)
-//            Toast.makeText(this, "${}", Toast.LENGTH_SHORT).show()
         }
     }
 

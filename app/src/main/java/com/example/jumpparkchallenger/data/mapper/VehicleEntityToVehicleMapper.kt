@@ -13,7 +13,9 @@ class VehicleEntityToVehicleMapper(private val priceEntityToPriceMapper: PriceEn
             plate = input.first.plate,
             model = input.first.model,
             color = input.first.color,
-            price = price
+            price = price,
+            date = input.first.date
+
         )
     }
 }

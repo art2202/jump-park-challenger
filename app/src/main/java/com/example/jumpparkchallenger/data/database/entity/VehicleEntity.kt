@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.util.Date
 
 
 @Entity(
@@ -23,5 +24,6 @@ data class VehicleEntity(
     val model: String,
     val color: String,
     @ColumnInfo("price_type")
-    val priceType : String
+    val priceType : String,
+    val date: Date
 )

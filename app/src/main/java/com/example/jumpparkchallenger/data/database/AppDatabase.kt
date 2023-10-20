@@ -2,6 +2,7 @@ package com.example.jumpparkchallenger.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.jumpparkchallenger.data.database.dao.EstablishmentDao
 import com.example.jumpparkchallenger.data.database.dao.PaymentMethodDao
 import com.example.jumpparkchallenger.data.database.dao.PriceDao
@@ -14,6 +15,7 @@ import com.example.jumpparkchallenger.data.database.entity.PriceEntity
 import com.example.jumpparkchallenger.data.database.entity.UserEntity
 import com.example.jumpparkchallenger.data.database.entity.ValueDetailEntity
 import com.example.jumpparkchallenger.data.database.entity.VehicleEntity
+import com.example.jumpparkchallenger.data.database.type_converter.DateConverter
 
 
 @Database(
@@ -28,6 +30,7 @@ import com.example.jumpparkchallenger.data.database.entity.VehicleEntity
     version = 1,
     exportSchema = false
 )
+@TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao() : UserDao

@@ -9,7 +9,8 @@ class VehicleToVehicleEntityMapper : Mapper<Vehicle, VehicleEntity> {
             input.plate,
             input.model,
             input.color,
-            input.price.priceType ?: ""
+            input.price.priceType ?: "",
+            input.date
         )
     }
 }
