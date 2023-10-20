@@ -16,6 +16,9 @@
         android:theme="@style/Theme.JumpParkChallenger"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.checkout.CheckOutActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.checkin.CheckInActivity"
             android:exported="false" />
         <activity

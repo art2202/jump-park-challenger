@@ -1,5 +1,6 @@
 package com.example.jumpparkchallenger.presentation.vehicle_list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jumpparkchallenger.databinding.FragmentVehicleListBinding
 import com.example.jumpparkchallenger.domain.entities.Vehicle
+import com.example.jumpparkchallenger.presentation.checkout.CheckOutActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VehicleListFragment : Fragment() {
@@ -28,7 +30,7 @@ class VehicleListFragment : Fragment() {
 
     private fun initView(vehicleList: List<Vehicle>?) {
         binding?.recyclerViewVehicles?.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = VehicleAdapter(vehicleList ?: listOf())
+        val adapter = VehicleAdapter(vehicleList ?: listOf(), ::openCheckOutActivity)
         binding?.recyclerViewVehicles?.adapter = adapter
     }
 
@@ -40,5 +42,12 @@ class VehicleListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getVehicleList()
+    }
+
+    private fun openCheckOutActivity(vehicle: Vehicle){
+        val intent = Intent(requireContext(), CheckOutActivity::class.java)
+        intent.putExtra("vehicle", vehicle)
+        startActivity(intent)
+
     }
 }
