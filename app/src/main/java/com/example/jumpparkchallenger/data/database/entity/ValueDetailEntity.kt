@@ -19,11 +19,13 @@ data class ValueDetailEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
 
-    val price: String?,
+    val price: String,
 
-    val period: Int?,
+    val period: Int,
+
+    val since : Int,
 
     @ColumnInfo(name = "price_type")
-    val priceType: String?,
+    val priceType: String,
 
 )

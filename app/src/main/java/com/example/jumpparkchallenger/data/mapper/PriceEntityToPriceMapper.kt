@@ -15,9 +15,9 @@ class PriceEntityToPriceMapper(
 
         return Price(
             priceType = input.first.priceType,
-            tolerance = input.first.tolerance,
-            maximumPeriod = input.first.maximumPeriod,
-            maximumValue = input.first.maximumValue,
+            tolerance = input.first.tolerance ?: 0,
+            maximumPeriod = input.first.maximumPeriod ?: 0,
+            maximumValue = input.first.maximumValue ?: "",
             valueDetails = valueDetails
         )
     }

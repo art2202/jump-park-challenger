@@ -8,6 +8,7 @@ class ValueDetailEntityToValueDetailMapper : Mapper<ValueDetailEntity, ValueDeta
         return ValueDetail(
             price = input.price,
             period = input.period,
+            since = input.since,
             priceType = input.priceType
         )
     }

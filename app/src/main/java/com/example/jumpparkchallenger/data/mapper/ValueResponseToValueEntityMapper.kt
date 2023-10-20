@@ -7,9 +7,10 @@ class ValueResponseToValueEntityMapper :
     Mapper<ValueResponseData, ValueDetailEntity> {
     override fun map(input: ValueResponseData): ValueDetailEntity {
         return ValueDetailEntity(
-            price = input.price,
-            period = input.period,
-            priceType = input.type,
+            price = input.price ?: "",
+            period = input.period ?: 0,
+            since = input.since ?: 0,
+            priceType = input.type ?: "",
         )
     }
 }
