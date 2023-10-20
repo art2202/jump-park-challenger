@@ -29,10 +29,13 @@ import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapp
 import com.example.jumpparkchallenger.data.mapper.VehicleEntityToVehicleMapper
 import com.example.jumpparkchallenger.data.mapper.VehicleToVehicleEntityMapper
 import com.example.jumpparkchallenger.data.repository.CheckInRepositoryImpl
+import com.example.jumpparkchallenger.data.repository.CheckOutRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.VehicleListRepositoryImpl
+import com.example.jumpparkchallenger.domain.entities.CalculateValue
 import com.example.jumpparkchallenger.domain.repository.CheckInRepository
+import com.example.jumpparkchallenger.domain.repository.CheckOutRepository
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 import com.example.jumpparkchallenger.domain.repository.VehicleListRepository
@@ -43,6 +46,7 @@ import com.example.jumpparkchallenger.domain.usecases.Login
 import com.example.jumpparkchallenger.domain.usecases.SaveVehicle
 import com.example.jumpparkchallenger.domain.usecases.VehicleList
 import com.example.jumpparkchallenger.presentation.checkin.CheckInViewModel
+import com.example.jumpparkchallenger.presentation.checkout.CheckOutViewModel
 import com.example.jumpparkchallenger.presentation.home.HomeViewModel
 import com.example.jumpparkchallenger.presentation.login.LoginViewModel
 import com.example.jumpparkchallenger.presentation.vehicle_list.VehicleListViewModel
@@ -100,6 +104,7 @@ val repositoryModule = module{
     single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
+    single<CheckOutRepository> { CheckOutRepositoryImpl() }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -108,11 +113,12 @@ val useCaseModule = module {
     single { GetPrices(get()) }
     single { SaveVehicle(get()) }
     single { VehicleList(get()) }
+    single { CalculateValue(get()) }
 }
-
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { CheckInViewModel(get(), get()) }
     viewModel { VehicleListViewModel(get()) }
+    viewModel { CheckOutViewModel(get()) }
 }
