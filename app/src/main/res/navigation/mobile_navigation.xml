@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.jumpparkchallenger.presentation.cars_list.CarsListFragment"
+        android:name="com.example.jumpparkchallenger.presentation.vehicle_list.VehicleListFragment"
         android:label="@string/cars_list"
-        tools:layout="@layout/fragment_cars_list" />
+        tools:layout="@layout/fragment_vehicle_list" />
 
 </navigation>

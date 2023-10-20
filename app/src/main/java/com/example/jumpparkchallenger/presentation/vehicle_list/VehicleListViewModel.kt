@@ -1,10 +1,10 @@
-package com.example.jumpparkchallenger.presentation.cars_list
+package com.example.jumpparkchallenger.presentation.vehicle_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CarsListViewModel : ViewModel() {
+class VehicleListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is Cars List Fragment"
