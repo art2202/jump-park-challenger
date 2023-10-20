@@ -14,6 +14,8 @@ import com.example.jumpparkchallenger.data.data_source.login.LoginDataSource
 import com.example.jumpparkchallenger.data.data_source.login.LoginDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSource
 import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.vehicle_list.VehicleListDataSource
+import com.example.jumpparkchallenger.data.data_source.vehicle_list.VehicleListDataSourceImpl
 import com.example.jumpparkchallenger.data.database.AppDatabase
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
@@ -29,17 +31,21 @@ import com.example.jumpparkchallenger.data.mapper.VehicleToVehicleEntityMapper
 import com.example.jumpparkchallenger.data.repository.CheckInRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
+import com.example.jumpparkchallenger.data.repository.VehicleListRepositoryImpl
 import com.example.jumpparkchallenger.domain.repository.CheckInRepository
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
+import com.example.jumpparkchallenger.domain.repository.VehicleListRepository
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
 import com.example.jumpparkchallenger.domain.usecases.GetPrices
 import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
 import com.example.jumpparkchallenger.domain.usecases.SaveVehicle
+import com.example.jumpparkchallenger.domain.usecases.VehicleList
 import com.example.jumpparkchallenger.presentation.checkin.CheckInViewModel
 import com.example.jumpparkchallenger.presentation.home.HomeViewModel
 import com.example.jumpparkchallenger.presentation.login.LoginViewModel
+import com.example.jumpparkchallenger.presentation.vehicle_list.VehicleListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -69,6 +75,7 @@ val dataSourceModule = module{
     single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
     single<CheckInDataSource> { CheckInDataSourceImpl(get(), get(), get()) }
+    single<VehicleListDataSource> { VehicleListDataSourceImpl(get(), get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -92,6 +99,7 @@ val repositoryModule = module{
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
     single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
+    single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -99,10 +107,12 @@ val useCaseModule = module {
     single { LoadHomeInfo(get()) }
     single { GetPrices(get()) }
     single { SaveVehicle(get()) }
+    single { VehicleList(get()) }
 }
 
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { CheckInViewModel(get(), get()) }
+    viewModel { VehicleListViewModel(get()) }
 }

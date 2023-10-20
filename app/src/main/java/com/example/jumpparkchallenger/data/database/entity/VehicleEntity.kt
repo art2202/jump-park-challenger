@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
             entity = PriceEntity::class,
             parentColumns = ["price_type"],
             childColumns = ["price_type"],
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.NO_ACTION
         )
     ]
 )
