@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Campo para a Placa -->
     <EditText
-        android:id="@+id/editTextPlaca"
+        android:id="@+id/editTextPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Digite a placa"
         android:inputType="textCapCharacters" />
 
-    <!-- Campo para o Modelo -->
     <EditText
-        android:id="@+id/editTextModelo"
+        android:id="@+id/editTextModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Digite o modelo"
         android:inputType="text" />
 
-    <!-- Campo para a Cor -->
     <EditText
         android:id="@+id/editTextColor"
         android:layout_width="match_parent"
@@ -31,14 +29,13 @@
 
     <!-- Dropdown para a escolha da tabela de estacionamento -->
     <Spinner
-        android:id="@+id/spinnerEstacionamento"
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Escolha a tabela de estacionamento" />
+        android:layout_height="wrap_content" />
 
     <!-- Botão de confirmação -->
     <Button
-        android:id="@+id/buttonConfirmar"
+        android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirmar" />
