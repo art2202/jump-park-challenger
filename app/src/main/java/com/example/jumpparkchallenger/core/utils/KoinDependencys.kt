@@ -6,6 +6,8 @@ import com.example.jumpparkchallenger.data.api.ApiService
 import com.example.jumpparkchallenger.data.api.RestApi
 import com.example.jumpparkchallenger.data.data_source.checkin.CheckInDataSource
 import com.example.jumpparkchallenger.data.data_source.checkin.CheckInDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.checkout.CheckOutDataSource
+import com.example.jumpparkchallenger.data.data_source.checkout.CheckOutDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.home.HomeDataSource
 import com.example.jumpparkchallenger.data.data_source.home.HomeDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.home.HomeLocalDataSource
@@ -40,6 +42,7 @@ import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 import com.example.jumpparkchallenger.domain.repository.VehicleListRepository
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
+import com.example.jumpparkchallenger.domain.usecases.GetPaymentsMethod
 import com.example.jumpparkchallenger.domain.usecases.GetPrices
 import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
@@ -80,6 +83,7 @@ val dataSourceModule = module{
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
     single<CheckInDataSource> { CheckInDataSourceImpl(get(), get(), get()) }
     single<VehicleListDataSource> { VehicleListDataSourceImpl(get(), get(), get()) }
+    single<CheckOutDataSource> { CheckOutDataSourceImpl(get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -104,7 +108,7 @@ val repositoryModule = module{
     single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
-    single<CheckOutRepository> { CheckOutRepositoryImpl() }
+    single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -114,11 +118,12 @@ val useCaseModule = module {
     single { SaveVehicle(get()) }
     single { VehicleList(get()) }
     single { CalculateValue(get()) }
+    single { GetPaymentsMethod(get()) }
 }
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { CheckInViewModel(get(), get()) }
     viewModel { VehicleListViewModel(get()) }
-    viewModel { CheckOutViewModel(get()) }
+    viewModel { CheckOutViewModel(get(), get()) }
 }

@@ -1,11 +1,24 @@
 package com.example.jumpparkchallenger.data.repository
 
+import com.example.jumpparkchallenger.data.data_source.checkout.CheckOutDataSource
+import com.example.jumpparkchallenger.data.mapper.PaymentMethodEntityToPaymentMethodMapper
 import com.example.jumpparkchallenger.domain.entities.Vehicle
+import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
 import com.example.jumpparkchallenger.domain.repository.CheckOutRepository
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
-class CheckOutRepositoryImpl : CheckOutRepository{
+class CheckOutRepositoryImpl(
+    private val checkOutDataSource: CheckOutDataSource,
+    private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper)
+    : CheckOutRepository{
+    override suspend fun getPaymentsMethod(): List<PaymentMethod> {
+        val paymentsEntity = checkOutDataSource.getPaymentsMethod()
+        return paymentsEntity.map {
+            paymentMethodEntityToPaymentMethodMapper.map(it)
+        }
+    }
+
     override fun calculateValue(vehicle: Vehicle): Pair<Int, Double> {
         val price = vehicle.price
         val time = getMinutes(vehicle.date)
