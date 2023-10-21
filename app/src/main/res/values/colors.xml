@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textColorDark">#252220</color>
     <color name="textGrayLight">#a7a6a5</color>
+    <color name="colorJumpPark">#0b4962</color>
 </resources>

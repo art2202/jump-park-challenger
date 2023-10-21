@@ -21,7 +21,6 @@
         android:textColor="@color/textColorDark"
         android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:textAllCaps="true"
         android:textSize="16sp" />
 
 </LinearLayout>

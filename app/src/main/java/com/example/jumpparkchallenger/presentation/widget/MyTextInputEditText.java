@@ -35,8 +35,6 @@ public class MyTextInputEditText extends TextInputEditText {
 
         if(fs != null && fs.length > 0) filters.addAll(Arrays.asList(fs));
 
-        filters.add(new InputFilter.AllCaps());
-
         setFilters(filters.toArray(new InputFilter[0]));
     }
 

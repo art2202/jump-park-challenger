@@ -7,6 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Encerrar Sessão</string>
 
+    <string name="create_account"><u>Primeiro acesso? Clique aqui e crie sua conta</u></string>
+
     <string name="menu_home">Início</string>
     <string name="cars_list">Lista de carros</string>
     <string name="title_activity_login">LoginActivity</string>
