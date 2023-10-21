@@ -1,9 +1,6 @@
 package com.example.jumpparkchallenger.presentation.checkin
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +8,7 @@ import com.example.jumpparkchallenger.R
 import com.example.jumpparkchallenger.databinding.ActivityCheckInBinding
 import com.example.jumpparkchallenger.domain.entities.Vehicle
 import com.example.jumpparkchallenger.domain.entities.home.Price
-import com.example.jumpparkchallenger.presentation.Color
+import com.example.jumpparkchallenger.presentation.ColorEnum
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Date
 import java.util.regex.Pattern
@@ -46,7 +43,7 @@ class CheckInActivity : AppCompatActivity() {
 
     private fun setColorSpinner(){
         val spinnerData = arrayListOf("selecione...")
-        spinnerData.addAll(Color.getNomeList())
+        spinnerData.addAll(ColorEnum.getNomeList())
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerData)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerColor.adapter = adapter

@@ -1,6 +1,6 @@
 package com.example.jumpparkchallenger.presentation
 
-enum class Color(val nome: String, val hexValue: String) {
+enum class ColorEnum(val nome: String, val hexValue: String) {
     VERMELHO("Vermelho", "#FF0000"),
     AZUL("Azul", "#0000FF"),
     VERDE("Verde", "#008000"),

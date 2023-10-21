@@ -7,7 +7,7 @@ import java.util.Date
 data class Vehicle(
     val plate : String,
     val model : String,
-    val color : String, //todo fazer ENUM ou um array e colocar num spinner para padronizar cores
+    val color : String,
     val price: Price,
     val date : Date
 ) : Serializable
