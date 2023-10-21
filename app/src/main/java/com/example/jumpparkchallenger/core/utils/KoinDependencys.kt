@@ -16,6 +16,10 @@ import com.example.jumpparkchallenger.data.data_source.login.LoginDataSource
 import com.example.jumpparkchallenger.data.data_source.login.LoginDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSource
 import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.main.MainDataSource
+import com.example.jumpparkchallenger.data.data_source.main.MainDataSourceImpl
+import com.example.jumpparkchallenger.data.data_source.main.MainLocalDataSource
+import com.example.jumpparkchallenger.data.data_source.main.MainLocalDataSourceImpl
 import com.example.jumpparkchallenger.data.data_source.vehicle_list.VehicleListDataSource
 import com.example.jumpparkchallenger.data.data_source.vehicle_list.VehicleListDataSourceImpl
 import com.example.jumpparkchallenger.data.database.AppDatabase
@@ -37,12 +41,14 @@ import com.example.jumpparkchallenger.data.repository.CheckInRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.CheckOutRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.HomeRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.LoginRepositoryImpl
+import com.example.jumpparkchallenger.data.repository.MainRepositoryImpl
 import com.example.jumpparkchallenger.data.repository.VehicleListRepositoryImpl
 import com.example.jumpparkchallenger.domain.entities.CalculateValue
 import com.example.jumpparkchallenger.domain.repository.CheckInRepository
 import com.example.jumpparkchallenger.domain.repository.CheckOutRepository
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
+import com.example.jumpparkchallenger.domain.repository.MainRepository
 import com.example.jumpparkchallenger.domain.repository.VehicleListRepository
 import com.example.jumpparkchallenger.domain.usecases.CheckOut
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
@@ -50,12 +56,14 @@ import com.example.jumpparkchallenger.domain.usecases.GetPaymentsMethod
 import com.example.jumpparkchallenger.domain.usecases.GetPrices
 import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
+import com.example.jumpparkchallenger.domain.usecases.Logout
 import com.example.jumpparkchallenger.domain.usecases.SaveVehicle
 import com.example.jumpparkchallenger.domain.usecases.VehicleList
 import com.example.jumpparkchallenger.presentation.checkin.CheckInViewModel
 import com.example.jumpparkchallenger.presentation.checkout.CheckOutViewModel
 import com.example.jumpparkchallenger.presentation.home.HomeViewModel
 import com.example.jumpparkchallenger.presentation.login.LoginViewModel
+import com.example.jumpparkchallenger.presentation.main.MainViewModel
 import com.example.jumpparkchallenger.presentation.vehicle_list.VehicleListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -89,6 +97,8 @@ val dataSourceModule = module{
     single<CheckInDataSource> { CheckInDataSourceImpl(get(), get(), get()) }
     single<VehicleListDataSource> { VehicleListDataSourceImpl(get(), get(), get()) }
     single<CheckOutDataSource> { CheckOutDataSourceImpl(get(), get()) }
+    single<MainDataSource> { MainDataSourceImpl(get(), get()) }
+    single<MainLocalDataSource> { MainLocalDataSourceImpl(get(), get(), get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -118,6 +128,7 @@ val repositoryModule = module{
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
     single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get(), get(), get()) }
+    single<MainRepository> { MainRepositoryImpl(get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -129,6 +140,7 @@ val useCaseModule = module {
     single { CalculateValue(get()) }
     single { GetPaymentsMethod(get()) }
     single { CheckOut(get()) }
+    single { Logout(get()) }
 }
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
@@ -136,4 +148,5 @@ val viewModelModule = module {
     viewModel { CheckInViewModel(get(), get()) }
     viewModel { VehicleListViewModel(get()) }
     viewModel { CheckOutViewModel(get(), get(), get()) }
+    viewModel { MainViewModel(get()) }
 }

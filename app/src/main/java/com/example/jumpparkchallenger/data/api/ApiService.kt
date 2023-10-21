@@ -20,4 +20,12 @@ interface ApiService {
         @Path("establishmentId") establishmentId: Int,
         @Header("Authorization") token : String
     ) : Response<HomeResponseData>
+
+    @POST("{userId}/establishment/{establishmentId}/session/close/{sessionId}")
+    suspend fun logout(
+        @Path("userId") userId: Int,
+        @Path("establishmentId") establishmentId: Int,
+        @Path("sessionId") sessionId : Int,
+        @Header("Authorization") token : String
+    ) : Response<Any>
 }
