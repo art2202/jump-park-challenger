@@ -21,7 +21,6 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        viewModel.loadInfo()
         viewModel.responseHomeData.observe(viewLifecycleOwner){
             initView(it)
         }
@@ -41,5 +40,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadInfo()
     }
 }

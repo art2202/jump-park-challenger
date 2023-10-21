@@ -7,7 +7,7 @@ import android.util.Patterns
 import android.widget.Toast
 import com.example.jumpparkchallenger.R
 import com.example.jumpparkchallenger.databinding.ActivityLoginBinding
-import com.example.jumpparkchallenger.presentation.MainActivity
+import com.example.jumpparkchallenger.presentation.main.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {

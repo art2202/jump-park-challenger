@@ -47,11 +47,7 @@ class CheckOutActivity : AppCompatActivity() {
 
     }
     private fun initListeners(){
-        binding.checkoutButton.setOnClickListener {
-            showCheckoutDialog()
-//            pegar o valor pago, adicionar na tabela paymentMethod e garantir q ela n seja 0 toda
-//            vez que abrir, e excluir o carro do banco de dados
-        }
+        binding.checkoutButton.setOnClickListener { showCheckoutDialog() }
     }
 
     private fun calculateValue(){
@@ -90,6 +86,7 @@ class CheckOutActivity : AppCompatActivity() {
                 val paymentName = selectedRadioButton.text.toString()
                 val paymentMethodSelected = paymentMethods.find { it.name == paymentName }
                 checkout(paymentMethodSelected!!)
+                finish()
                 dialog.dismiss()
             } else {
                 dialog.dismiss()
