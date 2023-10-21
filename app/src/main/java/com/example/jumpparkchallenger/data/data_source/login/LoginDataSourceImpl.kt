@@ -2,6 +2,7 @@ package com.example.jumpparkchallenger.data.data_source.login
 
 import com.example.jumpparkchallenger.data.api.ApiService
 import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
+import org.json.JSONObject
 
 class LoginDataSourceImpl(
     private val apiService: ApiService,
@@ -15,10 +16,13 @@ class LoginDataSourceImpl(
             response.isSuccessful -> {
                 return response.body()!!.data!!
             }
-            response.code() == 404 -> {
-                throw Throwable("Usuário não encontrado")
+
+            else -> {
+                val jsonString = response.errorBody()?.string() ?: ""
+                val jsonObject = JSONObject(jsonString)
+                val message = jsonObject.getString("data")
+                throw Throwable(message)
             }
-            else -> throw Throwable()
         }
     }
 

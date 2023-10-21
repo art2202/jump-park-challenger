@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.jumpparkchallenger.R
 import com.example.jumpparkchallenger.databinding.ActivityLoginBinding
 import com.example.jumpparkchallenger.presentation.main.MainActivity
@@ -36,8 +37,12 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.errorMessage.observe(this) { message ->
             message?.let {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-                println(it)
+                AlertDialog.Builder(this)
+                    .setTitle("Erro ao entrar")
+                    .setMessage(it)
+                    .setNeutralButton("ok") { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
                 viewModel.errorMessage.value = null
             }
         }
@@ -46,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun openHomeActivity() {
-        //passar infos aqui
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
