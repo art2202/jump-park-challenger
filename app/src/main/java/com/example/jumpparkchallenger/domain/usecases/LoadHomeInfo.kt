@@ -5,5 +5,5 @@ import com.example.jumpparkchallenger.domain.repository.HomeRepository
 
 class LoadHomeInfo(private val homeRepository: HomeRepository) {
 
-    suspend operator fun invoke() : List<PaymentMethod> = homeRepository.getData()
+    suspend operator fun invoke() : Pair<Int, List<PaymentMethod>> = homeRepository.getData()
 }

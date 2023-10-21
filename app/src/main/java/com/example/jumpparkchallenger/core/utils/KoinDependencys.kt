@@ -125,7 +125,7 @@ val mapperModule = module{
 }
 val repositoryModule = module{
     single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get(), get()) }
-    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
+    single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
     single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get(), get(), get()) }

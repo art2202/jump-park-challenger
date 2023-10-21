@@ -2,10 +2,10 @@ package com.example.jumpparkchallenger.data.repository
 
 import com.example.jumpparkchallenger.data.data_source.home.HomeDataSource
 import com.example.jumpparkchallenger.data.data_source.home.HomeLocalDataSource
+import com.example.jumpparkchallenger.data.database.dao.VehicleDao
 import com.example.jumpparkchallenger.data.database.entity.ValueDetailEntity
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodEntityToPaymentMethodMapper
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodResponseToPaymentMethodEntityMapper
-import com.example.jumpparkchallenger.data.mapper.PriceEntityToPriceMapper
 import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMapper
 import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
 import com.example.jumpparkchallenger.data.models.home.HomeData
@@ -18,15 +18,16 @@ class HomeRepositoryImpl(
     private val pricesResponseToPriceEntityMapper: PricesResponseToPriceEntityMapper,
     private val paymentMethodResponseToPaymentMethodEntityMapper: PaymentMethodResponseToPaymentMethodEntityMapper,
     private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper,
-    private val valueResponseToValueEntityMapper: ValueResponseToValueEntityMapper
+    private val valueResponseToValueEntityMapper: ValueResponseToValueEntityMapper,
+    private val vehicleDao: VehicleDao
 ) : HomeRepository {
-    override suspend fun getData(): List<PaymentMethod> {
+    override suspend fun getData(): Pair<Int, List<PaymentMethod>> {
 
         val userEntity = homeLocalDataSource.getUser()
         val establishmentEntity = homeLocalDataSource.getEstablishment()
         val data = homeDataSource.getData(userEntity?.id ?: 0, establishmentEntity?.id ?: 0)
         save(data)
-        return getPaymentMethods()
+        return Pair(vehicleDao.getAllVehicles().size, getPaymentMethods())
     }
 
     private suspend fun getPaymentMethods(): List<PaymentMethod> {

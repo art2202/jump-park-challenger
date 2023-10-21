@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jumpparkchallenger.databinding.FragmentHomeBinding
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
-import com.example.jumpparkchallenger.domain.entities.home.Price
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -22,14 +20,18 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         viewModel.responseHomeData.observe(viewLifecycleOwner){
-            initView(it)
+            if (it != null) {
+                initView(it)
+
+            }
         }
         return binding!!.root
     }
 
-    private fun initView(data: List<PaymentMethod>?) {
-        makeRecyclerView(data)
-        binding?.totalAmountTextView?.text = "R$${data?.sumOf { it.total }.toString()}"
+    private fun initView(data: Pair<Int, List<PaymentMethod>>?) {
+        makeRecyclerView(data?.second)
+        binding?.totalCarsTextView?.text = data?.first.toString()
+        binding?.totalAmountTextView?.text = "R$${data?.second?.sumOf { it.total }.toString()}"
     }
 
     private fun makeRecyclerView(data: List<PaymentMethod>?){

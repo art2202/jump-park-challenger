@@ -12,16 +12,18 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val loadHomeInfo: LoadHomeInfo) : ViewModel() {
 
-    val responseHomeData = MutableLiveData<List<PaymentMethod>?>()
+    val responseHomeData = MutableLiveData<Pair<Int, List<PaymentMethod>>?>()
     fun loadInfo(){
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
                 val result = loadHomeInfo()
                 responseHomeData.postValue(result)
             }
+            catch (t : Throwable){
+                responseHomeData.postValue(null)
+            }
         }
-        catch (t : Throwable){
-            responseHomeData.postValue(null)
-        }
+
     }
 }
