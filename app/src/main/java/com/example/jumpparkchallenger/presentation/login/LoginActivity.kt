@@ -14,6 +14,7 @@ class LoginActivity : AppCompatActivity() {
 
     private val viewModel : LoginViewModel by viewModel()
     private lateinit var binding : ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -30,6 +31,14 @@ class LoginActivity : AppCompatActivity() {
             if(info != null) {
                 Toast.makeText(this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show()
                 openHomeActivity()
+            }
+        }
+
+        viewModel.errorMessage.observe(this) { message ->
+            message?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                println(it)
+                viewModel.errorMessage.value = null
             }
         }
         initListeners()

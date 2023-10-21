@@ -12,17 +12,18 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val loginUseCase: Login, private val checkTokenUseCase: CheckToken) : ViewModel() {
 
     val responseHome = MutableLiveData<HomeInfos?>()
+    val errorMessage = MutableLiveData<String?>()
     val tokenExists = MutableLiveData<Boolean>()
 
     fun login(email : String, password : String){
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
                 val result = loginUseCase(email, password)
                 responseHome.postValue(result)
             }
-        }
-        catch (t : Throwable){
-            responseHome.postValue(null)
+            catch (t : Throwable){
+                errorMessage.postValue(t.message)
+            }
         }
     }
 
