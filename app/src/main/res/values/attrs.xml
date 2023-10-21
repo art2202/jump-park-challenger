@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FormItemEditTextView">
+        <attr name="view_edit_text_title" format="string" localization="suggested" />
+        <attr name="view_edit_text_hint" format="string" localization="suggested" />
+        <attr name="view_edit_text_max_length" format="integer" />
+        <attr name="view_edit_text_input_type">
+            <flag name="none" value="0x00000000" />
+            <flag name="text" value="0x00000001" />
+            <flag name="textMultiLine" value="0x00020001" />
+            <flag name="textEmailAddress" value="0x00000021" />
+            <flag name="textPersonName" value="0x00000061" />
+            <flag name="textPassword" value="0x00000081" />
+            <flag name="number" value="0x00000002" />
+            <flag name="numberSigned" value="0x00001002" />
+            <flag name="numberDecimal" value="0x00002002" />
+            <flag name="numberPassword" value="0x00000012" />
+            <flag name="phone" value="0x00000003" />
+            <flag name="datetime" value="0x00000004" />
+            <flag name="date" value="0x00000014" />
+            <flag name="time" value="0x00000024" />
+        </attr>
+    </declare-styleable>
+
+
+</resources>
