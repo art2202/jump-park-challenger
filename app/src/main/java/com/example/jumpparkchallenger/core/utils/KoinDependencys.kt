@@ -26,6 +26,8 @@ import com.example.jumpparkchallenger.data.mapper.PaymentMethodResponseToPayment
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodToPaymentMethodEntityMapper
 import com.example.jumpparkchallenger.data.mapper.PriceEntityToPriceMapper
 import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMapper
+import com.example.jumpparkchallenger.data.mapper.SessionDataResponseToSessionEntityMapper
+import com.example.jumpparkchallenger.data.mapper.SessionEntityToSessionMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
 import com.example.jumpparkchallenger.data.mapper.ValueDetailEntityToValueDetailMapper
 import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
@@ -77,9 +79,10 @@ val databaseModule = module {
     single { get<AppDatabase>().PaymentMethodDao() }
     single { get<AppDatabase>().ValueDetailDao() }
     single { get<AppDatabase>().vehicleDao() }
+    single { get<AppDatabase>().sessionDao() }
 }
 val dataSourceModule = module{
-    single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get()) }
+    single<LoginLocalDataSource> { LoginLocalDataSourceImpl(get(), get(), get(), get()) }
     single<LoginDataSource> { LoginDataSourceImpl(get()) }
     single<HomeDataSource> { HomeDataSourceImpl(get(), get()) }
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
@@ -105,9 +108,12 @@ val mapperModule = module{
     single { VehicleToVehicleEntityMapper() }
     single { VehicleEntityToVehicleMapper(get()) }
 
+    single { SessionDataResponseToSessionEntityMapper() }
+    single { SessionEntityToSessionMapper() }
+
 }
 val repositoryModule = module{
-    single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get()) }
+    single<LoginRepository> { LoginRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }

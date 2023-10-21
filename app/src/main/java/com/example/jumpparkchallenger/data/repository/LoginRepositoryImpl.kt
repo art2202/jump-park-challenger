@@ -4,6 +4,7 @@ import com.example.jumpparkchallenger.data.data_source.login.LoginDataSource
 import com.example.jumpparkchallenger.data.data_source.login.LoginLocalDataSource
 import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEstablishmentEntityMapper
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
+import com.example.jumpparkchallenger.data.mapper.SessionDataResponseToSessionEntityMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
 import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
 import com.example.jumpparkchallenger.domain.entities.HomeInfos
@@ -14,6 +15,7 @@ class LoginRepositoryImpl(
     private val loginLocalDataSource: LoginLocalDataSource,
     private val loginMapper : LoginDataResponseToHomeInfosMapper,
     private val userDataResponseToUserEntityMapper: UserDataResponseToUserEntityMapper,
+    private val sessionDataResponseToSessionEntityMapper: SessionDataResponseToSessionEntityMapper,
     private val establishmentDataResponseToEstablishmentEntityMapper: EstablishmentDataResponseToEstablishmentEntityMapper
 ) : LoginRepository {
     override suspend fun login(email: String, password: String) : HomeInfos {
@@ -28,8 +30,9 @@ class LoginRepositoryImpl(
 
     private suspend fun saveLocal(data : LoginDataResponse) {
         val userEntity = userDataResponseToUserEntityMapper.map(data.userDataResponse!!)
+        val sessionEntity = sessionDataResponseToSessionEntityMapper.map(data.sessionDataResponse!!)
         val establishmentEntity = establishmentDataResponseToEstablishmentEntityMapper.map(data.establishmentDataResponse[0]!!)
-        loginLocalDataSource.saveData(userEntity, establishmentEntity, data.userDataResponse.accessToken ?: "")
+        loginLocalDataSource.saveData(userEntity, establishmentEntity, sessionEntity,data.userDataResponse.accessToken ?: "")
     }
 
     override suspend fun checkToken(): Boolean {
