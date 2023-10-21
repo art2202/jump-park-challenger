@@ -1,6 +1,7 @@
 package com.example.jumpparkchallenger.core.utils
 
 import androidx.room.Room
+import com.example.jumpparkchallenger.R
 import com.example.jumpparkchallenger.core.App
 import com.example.jumpparkchallenger.data.api.ApiService
 import com.example.jumpparkchallenger.data.api.RestApi
@@ -77,7 +78,7 @@ val databaseModule = module {
         Room.databaseBuilder(
             App.instance,
             AppDatabase::class.java,
-            "jump-park-challenger"
+            App.instance.getString(R.string.database_name)
         ).build()
     }
 
@@ -98,7 +99,7 @@ val dataSourceModule = module{
     single<VehicleListDataSource> { VehicleListDataSourceImpl(get(), get(), get()) }
     single<CheckOutDataSource> { CheckOutDataSourceImpl(get(), get()) }
     single<MainDataSource> { MainDataSourceImpl(get(), get()) }
-    single<MainLocalDataSource> { MainLocalDataSourceImpl(get(), get(), get(), get()) }
+    single<MainLocalDataSource> { MainLocalDataSourceImpl(get(), get(), get(), get(), get(), get(), get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }

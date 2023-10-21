@@ -12,11 +12,6 @@ interface MainLocalDataSource {
 
     suspend fun getSession() : SessionEntity?
 
-    suspend fun deleteUser()
+    suspend fun clearDatabase()
 
-    suspend fun deleteEstablishment()
-
-    suspend fun deleteSession()
-
-    suspend fun deleteToken()
 }

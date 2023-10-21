@@ -11,4 +11,6 @@
     <string name="cars_list">Lista de carros</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="logout_fail">Não foi possível realizar logout, tente novamente mais tarde</string>
+
+    <string name="database_name">jump-park-challenger</string>
 </resources>

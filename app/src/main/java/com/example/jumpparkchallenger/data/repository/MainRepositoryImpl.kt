@@ -23,9 +23,6 @@ class MainRepositoryImpl(
     }
 
     private suspend fun deleteData() {
-        mainLocalDataSource.deleteSession()
-        mainLocalDataSource.deleteUser()
-        mainLocalDataSource.deleteEstablishment()
-        mainLocalDataSource.deleteToken()
+        mainLocalDataSource.clearDatabase()
     }
 }

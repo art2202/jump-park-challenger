@@ -18,7 +18,6 @@ interface EstablishmentDao {
     @Delete
     fun deleteEstablishment(establishment: EstablishmentEntity)
 
-    // Se você preferir deletar todos os estabelecimentos sem passar um específico:
     @Query("DELETE FROM establishment")
     fun deleteAllEstablishments()
 }

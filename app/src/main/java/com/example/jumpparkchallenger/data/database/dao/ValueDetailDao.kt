@@ -21,4 +21,7 @@ interface ValueDetailDao {
 
     @Query("DELETE FROM value_detail WHERE price_type = :priceType")
      fun deleteValueDetailsByPriceId(priceType : String)
+
+    @Query("DELETE FROM value_detail")
+    fun deleteAllValueDetail()
 }
