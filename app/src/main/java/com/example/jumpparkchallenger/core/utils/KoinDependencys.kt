@@ -23,6 +23,7 @@ import com.example.jumpparkchallenger.data.mapper.EstablishmentDataResponseToEst
 import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMapper
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodEntityToPaymentMethodMapper
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodResponseToPaymentMethodEntityMapper
+import com.example.jumpparkchallenger.data.mapper.PaymentMethodToPaymentMethodEntityMapper
 import com.example.jumpparkchallenger.data.mapper.PriceEntityToPriceMapper
 import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
@@ -41,6 +42,7 @@ import com.example.jumpparkchallenger.domain.repository.CheckOutRepository
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 import com.example.jumpparkchallenger.domain.repository.VehicleListRepository
+import com.example.jumpparkchallenger.domain.usecases.CheckOut
 import com.example.jumpparkchallenger.domain.usecases.CheckToken
 import com.example.jumpparkchallenger.domain.usecases.GetPaymentsMethod
 import com.example.jumpparkchallenger.domain.usecases.GetPrices
@@ -83,7 +85,7 @@ val dataSourceModule = module{
     single<HomeLocalDataSource> { HomeLocalDataSourceImpl(get(), get(), get(), get(), get()) }
     single<CheckInDataSource> { CheckInDataSourceImpl(get(), get(), get()) }
     single<VehicleListDataSource> { VehicleListDataSourceImpl(get(), get(), get()) }
-    single<CheckOutDataSource> { CheckOutDataSourceImpl(get()) }
+    single<CheckOutDataSource> { CheckOutDataSourceImpl(get(), get()) }
 }
 val mapperModule = module{
     single { LoginDataResponseToHomeInfosMapper() }
@@ -92,6 +94,7 @@ val mapperModule = module{
 
     single { PaymentMethodResponseToPaymentMethodEntityMapper() }
     single { PaymentMethodEntityToPaymentMethodMapper() }
+    single { PaymentMethodToPaymentMethodEntityMapper() }
 
     single { PricesResponseToPriceEntityMapper() }
     single { PriceEntityToPriceMapper(get()) }
@@ -108,7 +111,7 @@ val repositoryModule = module{
     single<HomeRepository> { HomeRepositoryImpl(get(), get(), get(), get(), get(), get()) }
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
-    single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get()) }
+    single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get(), get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -119,11 +122,12 @@ val useCaseModule = module {
     single { VehicleList(get()) }
     single { CalculateValue(get()) }
     single { GetPaymentsMethod(get()) }
+    single { CheckOut(get()) }
 }
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { CheckInViewModel(get(), get()) }
     viewModel { VehicleListViewModel(get()) }
-    viewModel { CheckOutViewModel(get(), get()) }
+    viewModel { CheckOutViewModel(get(), get(), get()) }
 }

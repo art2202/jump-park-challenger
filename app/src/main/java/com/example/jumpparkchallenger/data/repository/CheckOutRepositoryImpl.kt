@@ -2,6 +2,8 @@ package com.example.jumpparkchallenger.data.repository
 
 import com.example.jumpparkchallenger.data.data_source.checkout.CheckOutDataSource
 import com.example.jumpparkchallenger.data.mapper.PaymentMethodEntityToPaymentMethodMapper
+import com.example.jumpparkchallenger.data.mapper.PaymentMethodToPaymentMethodEntityMapper
+import com.example.jumpparkchallenger.data.mapper.VehicleToVehicleEntityMapper
 import com.example.jumpparkchallenger.domain.entities.Vehicle
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
 import com.example.jumpparkchallenger.domain.repository.CheckOutRepository
@@ -10,8 +12,18 @@ import java.util.concurrent.TimeUnit
 
 class CheckOutRepositoryImpl(
     private val checkOutDataSource: CheckOutDataSource,
-    private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper)
-    : CheckOutRepository{
+    private val paymentMethodEntityToPaymentMethodMapper: PaymentMethodEntityToPaymentMethodMapper,
+    private val vehicleToVehicleEntityMapper: VehicleToVehicleEntityMapper,
+    private val paymentMethodToPaymentMethodEntityMapper : PaymentMethodToPaymentMethodEntityMapper
+    ) : CheckOutRepository{
+    override suspend fun checkOut(vehicle: Vehicle, paymentSelected: PaymentMethod) {
+        val vehicleEntity = vehicleToVehicleEntityMapper.map(vehicle)
+        checkOutDataSource.deleteVehicle(vehicleEntity)
+        val paymentMethodEntity = paymentMethodToPaymentMethodEntityMapper.map(paymentSelected)
+        checkOutDataSource.savePayment(paymentMethodEntity)
+
+    }
+
     override suspend fun getPaymentsMethod(): List<PaymentMethod> {
         val paymentsEntity = checkOutDataSource.getPaymentsMethod()
         return paymentsEntity.map {

@@ -6,8 +6,8 @@ import com.example.jumpparkchallenger.data.models.home.PaymentMethodosResponseDa
 class PaymentMethodResponseToPaymentMethodEntityMapper: Mapper<PaymentMethodosResponseData, PaymentMethodEntity> {
     override fun map(input: PaymentMethodosResponseData): PaymentMethodEntity {
         return PaymentMethodEntity(
-            id = input.id,
-            name = input.name
+            id = input.id ?: 0,
+            name = input.name ?: ""
         )
     }
 }

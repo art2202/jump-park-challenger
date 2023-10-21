@@ -10,7 +10,7 @@ import com.example.jumpparkchallenger.data.database.entity.PaymentMethodEntity
 @Dao
 interface PaymentMethodDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertPaymentMethod(paymentMethod: PaymentMethodEntity)
 
     @Query("SELECT * FROM payment_method")
@@ -24,4 +24,7 @@ interface PaymentMethodDao {
 
     @Query("DELETE FROM payment_method")
     fun deleteAllPaymentMethods()
+
+    @Query("UPDATE payment_method SET total = :newTotal WHERE id = :id")
+    fun updateTotalById(id: Int, newTotal: Double)
 }

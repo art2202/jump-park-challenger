@@ -5,6 +5,7 @@ import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
 
 interface CheckOutRepository {
 
+    suspend fun checkOut(vehicle: Vehicle, paymentSelected: PaymentMethod)
     suspend fun getPaymentsMethod() : List<PaymentMethod>
 
     fun calculateValue(vehicle: Vehicle) : Pair<Int, Double>

@@ -71,10 +71,9 @@ class CheckOutActivity : AppCompatActivity() {
 
         txtTotalValue.text = totalValue.toString()
 
-        // Supondo que você tenha uma lista chamada paymentMethods
         for (paymentMethod in paymentMethods) {
             val radioButton = RadioButton(this)
-            radioButton.text = paymentMethod.name // Ajuste de acordo com sua classe
+            radioButton.text = paymentMethod.name
             radioGroupPaymentMethods.addView(radioButton)
         }
 
@@ -84,12 +83,24 @@ class CheckOutActivity : AppCompatActivity() {
         val dialog = builder.create()
 
         btnPay.setOnClickListener {
-            // Implemente a lógica de pagamento aqui
+            val selectedRadioButtonId = radioGroupPaymentMethods.checkedRadioButtonId
 
-            dialog.dismiss() // Feche o diálogo quando o pagamento estiver concluído
+            if (selectedRadioButtonId != -1) {
+                val selectedRadioButton = dialogLayout.findViewById<RadioButton>(selectedRadioButtonId)
+                val paymentName = selectedRadioButton.text.toString()
+                val paymentMethodSelected = paymentMethods.find { it.name == paymentName }
+                checkout(paymentMethodSelected!!)
+                dialog.dismiss()
+            } else {
+                dialog.dismiss()
+            }
         }
 
         dialog.show()
+    }
+
+    private fun checkout(paymentMethodSelected: PaymentMethod) {
+        viewModel.checkOut(vehicle, totalValue, paymentMethodSelected)
     }
 
     override fun onResume() {

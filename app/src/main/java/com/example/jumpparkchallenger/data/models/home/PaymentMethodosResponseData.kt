@@ -7,5 +7,4 @@ class PaymentMethodosResponseData(
     val id : Int?,
     @SerializedName("paymentMethodName")
     val name : String?
-) {
-}
+)
