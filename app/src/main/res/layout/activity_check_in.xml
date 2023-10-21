@@ -1,43 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
+    <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
         android:id="@+id/editTextPlate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite a placa"
-        android:inputType="textCapCharacters" />
+        app:view_edit_text_title="Placa"
+        android:inputType="text" />
 
-    <EditText
+    <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
         android:id="@+id/editTextModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite o modelo"
+        app:view_edit_text_title="Marca/Modelo"
+        android:layout_marginTop="20dp"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/editTextColor"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cor"
+        android:layout_marginTop="20dp"/>
+    <Spinner
+        android:id="@+id/spinner_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite a cor"
-        android:inputType="text" />
+        android:paddingVertical="15dp"
+        android:layout_marginBottom="15dp"/>
 
-    <!-- Dropdown para a escolha da tabela de estacionamento -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tabela"
+        android:layout_marginTop="20dp"/>
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        />
 
-    <!-- Botão de confirmação -->
     <Button
         android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirmar" />
+        android:text="Confirmar"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/colorJumpPark"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
