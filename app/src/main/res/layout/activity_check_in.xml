@@ -1,59 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
-    <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
-        android:id="@+id/editTextPlate"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:view_edit_text_title="Placa"
-        android:inputType="text" />
+        android:theme="@style/Theme.JumpParkChallenger.AppBarOverlay">
 
-    <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
-        android:id="@+id/editTextModel"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:title="Checkin"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorJumpPark"
+            app:popupTheme="@style/Theme.JumpParkChallenger.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:view_edit_text_title="Marca/Modelo"
-        android:layout_marginTop="20dp"
-        android:inputType="text" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cor"
-        android:layout_marginTop="20dp"/>
-    <Spinner
-        android:id="@+id/spinner_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="15dp"
-        android:layout_marginBottom="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tabela"
-        android:layout_marginTop="20dp"/>
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="15dp"
-        />
+            <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
+                android:id="@+id/editTextPlate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:view_edit_text_title="Placa"
+                android:inputType="text" />
 
-    <Button
-        android:id="@+id/buttonConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmar"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/bg_button"
-        android:backgroundTint="@color/colorJumpPark"
-        android:textColor="@android:color/white" />
+            <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
+                android:id="@+id/editTextModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:view_edit_text_title="Marca/Modelo"
+                android:layout_marginTop="20dp"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cor"
+                android:layout_marginTop="20dp"/>
+            <Spinner
+                android:id="@+id/spinner_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                android:layout_marginBottom="15dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tabela"
+                android:layout_marginTop="20dp"/>
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmar"
+            android:layout_marginHorizontal="26dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_button"
+            android:backgroundTint="@color/colorJumpPark"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>
