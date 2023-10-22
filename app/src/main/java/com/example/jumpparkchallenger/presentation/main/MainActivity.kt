@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.navigation.NavigationView
@@ -32,13 +34,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.appBarMain.toolbar)
 
+        viewModel.getUser()
+
         viewModel.responseLogout.observe(this){result ->
             if(result) finish()
-            else Toast.makeText(this, getString(R.string.logout_fail), Toast.LENGTH_SHORT).show()
+            else Toast.makeText(
+                this,
+                getString(R.string.logout_fail),
+                Toast.LENGTH_SHORT
+            ).show()
         }
+
+        viewModel.responseUserEmail.observe(this){ setEmail(it) }
 
         initViews()
         initListeners()
+    }
+
+    private fun setEmail(email : String){
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val headerView: View = navigationView.getHeaderView(0)
+        val emailTextView: TextView = headerView.findViewById(R.id.emailTextView)
+
+        emailTextView.text = email
     }
 
     private fun initListeners(){
@@ -55,6 +73,8 @@ class MainActivity : AppCompatActivity() {
             setOf(R.id.nav_home, R.id.nav_gallery), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
 
     private fun openCheckinActivity() {

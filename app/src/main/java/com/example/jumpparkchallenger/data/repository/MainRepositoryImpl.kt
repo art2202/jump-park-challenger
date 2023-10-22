@@ -22,6 +22,11 @@ class MainRepositoryImpl(
         }
     }
 
+    override suspend fun getUser(): String {
+        val userEntity = mainLocalDataSource.getUser()
+        return userEntity?.email ?: ""
+    }
+
     private suspend fun deleteData() {
         mainLocalDataSource.clearDatabase()
     }
