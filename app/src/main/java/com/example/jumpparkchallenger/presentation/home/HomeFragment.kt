@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jumpparkchallenger.core.utils.Formatter
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
 
         viewModel.responseHomeData.observe(viewLifecycleOwner){
             if (it != null) {
+                shimmerStart(false)
                 initView(it)
 
             }
@@ -48,6 +50,14 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        shimmerStart(true)
         viewModel.loadInfo()
+    }
+
+    private fun shimmerStart(boolean : Boolean){
+        binding?.shimmerView?.showShimmer(boolean)
+        binding?.shimmerView?.isVisible = boolean
+        binding?.vehicleCoutLinearLayout?.isVisible = !boolean
+        binding?.totalLinearLayout?.isVisible = !boolean
     }
 }

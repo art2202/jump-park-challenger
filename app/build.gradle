@@ -68,5 +68,7 @@ dependencies {
     implementation "androidx.room:room-ktx:2.5.2"
 
     implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
 
 }
