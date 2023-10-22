@@ -6,7 +6,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jumpparkchallenger.R
+import com.example.jumpparkchallenger.core.utils.Formatter
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
+import java.text.NumberFormat
+import java.util.Locale
 
 class PaymentMethodAdapter(private val paymentMethods: List<PaymentMethod>) : RecyclerView.Adapter<PaymentMethodAdapter.PaymentMethodViewHolder>() {
 
@@ -18,9 +21,18 @@ class PaymentMethodAdapter(private val paymentMethods: List<PaymentMethod>) : Re
     override fun onBindViewHolder(holder: PaymentMethodViewHolder, position: Int) {
         val paymentMethod = paymentMethods[position]
 
-        holder.paymentIcon.setImageResource(R.drawable.ic_menu_camera)
+
+        when(paymentMethod.name){
+            "Dinheiro" -> { holder.paymentIcon.setImageResource(R.drawable.ic_money) }
+            "Crédito" -> { holder.paymentIcon.setImageResource(R.drawable.ic_card) }
+            "Débito" -> { holder.paymentIcon.setImageResource(R.drawable.ic_card) }
+            "Boleto" -> { holder.paymentIcon.setImageResource(R.drawable.ic_boleto) }
+            "Pix" -> { holder.paymentIcon.setImageResource(R.drawable.ic_pix) }
+            else -> {}
+        }
+
         holder.paymentTitle.text = paymentMethod.name
-        holder.paymentValue.text = paymentMethod.total.toString()
+        holder.paymentValue.text = Formatter.format(paymentMethod.total)
     }
 
     override fun getItemCount(): Int {

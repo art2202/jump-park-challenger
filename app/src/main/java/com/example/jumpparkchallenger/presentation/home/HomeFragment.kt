@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.jumpparkchallenger.core.utils.Formatter
 import com.example.jumpparkchallenger.databinding.FragmentHomeBinding
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,8 +31,8 @@ class HomeFragment : Fragment() {
 
     private fun initView(data: Pair<Int, List<PaymentMethod>>?) {
         makeRecyclerView(data?.second)
-        binding?.totalCarsTextView?.text = data?.first.toString()
-        binding?.totalAmountTextView?.text = "R$${data?.second?.sumOf { it.total }.toString()}"
+        binding?.totalCarsTextView?.text = "${data?.first.toString()}/22"
+        binding?.totalAmountTextView?.text = Formatter.format(data?.second?.sumOf { it.total })
     }
 
     private fun makeRecyclerView(data: List<PaymentMethod>?){
