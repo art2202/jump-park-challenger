@@ -56,6 +56,7 @@ import com.example.jumpparkchallenger.domain.usecases.CheckToken
 import com.example.jumpparkchallenger.domain.usecases.GetPaymentsMethod
 import com.example.jumpparkchallenger.domain.usecases.GetPrices
 import com.example.jumpparkchallenger.domain.usecases.GetUser
+import com.example.jumpparkchallenger.domain.usecases.GetVacancies
 import com.example.jumpparkchallenger.domain.usecases.LoadHomeInfo
 import com.example.jumpparkchallenger.domain.usecases.Login
 import com.example.jumpparkchallenger.domain.usecases.Logout
@@ -130,7 +131,7 @@ val repositoryModule = module{
     single<CheckInRepository> { CheckInRepositoryImpl(get(), get(), get()) }
     single<VehicleListRepository> { VehicleListRepositoryImpl(get(), get()) }
     single<CheckOutRepository> { CheckOutRepositoryImpl(get(), get(), get(), get()) }
-    single<MainRepository> { MainRepositoryImpl(get(), get()) }
+    single<MainRepository> { MainRepositoryImpl(get(), get(), get()) }
 }
 val useCaseModule = module {
     single{ Login(get()) }
@@ -144,6 +145,7 @@ val useCaseModule = module {
     single { CheckOut(get()) }
     single { Logout(get()) }
     single { GetUser(get()) }
+    single { GetVacancies(get()) }
 }
 val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
@@ -151,5 +153,5 @@ val viewModelModule = module {
     viewModel { CheckInViewModel(get(), get()) }
     viewModel { VehicleListViewModel(get()) }
     viewModel { CheckOutViewModel(get(), get(), get()) }
-    viewModel { MainViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
 }

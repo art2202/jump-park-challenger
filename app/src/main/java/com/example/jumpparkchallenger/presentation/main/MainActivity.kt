@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getUser()
 
+
+        viewModel.responseVacancies.observe(this){
+            initListeners(it)
+        }
+
         viewModel.responseLogout.observe(this){result ->
             if(result) finish()
             else Toast.makeText(
@@ -48,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.responseUserEmail.observe(this){ setEmail(it) }
 
         initViews()
-        initListeners()
     }
 
     private fun setEmail(email : String){
@@ -59,9 +63,12 @@ class MainActivity : AppCompatActivity() {
         emailTextView.text = email
     }
 
-    private fun initListeners(){
+    private fun initListeners(vacancies : Int){
         binding.appBarMain.fab.setOnClickListener {
-            openCheckinActivity()
+            if(vacancies > 0)
+                openCheckinActivity()
+            else
+                Toast.makeText(this, "Não há vagas no momento", Toast.LENGTH_SHORT).show()
         }
     }
     private fun initViews(){
@@ -117,5 +124,10 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getVacancies()
     }
 }

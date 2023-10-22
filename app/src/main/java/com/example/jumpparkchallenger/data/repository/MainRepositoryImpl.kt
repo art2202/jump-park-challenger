@@ -2,11 +2,13 @@ package com.example.jumpparkchallenger.data.repository
 
 import com.example.jumpparkchallenger.data.data_source.main.MainDataSource
 import com.example.jumpparkchallenger.data.data_source.main.MainLocalDataSource
+import com.example.jumpparkchallenger.data.data_source.vehicle_list.VehicleListDataSource
 import com.example.jumpparkchallenger.domain.repository.MainRepository
 
 class MainRepositoryImpl(
     private val mainDataSource: MainDataSource,
-    private val mainLocalDataSource: MainLocalDataSource
+    private val mainLocalDataSource: MainLocalDataSource,
+    private val vehicleListDataSource: VehicleListDataSource
 ) : MainRepository {
     override suspend fun logout(): Boolean {
         val userEntity = mainLocalDataSource.getUser()
@@ -25,6 +27,12 @@ class MainRepositoryImpl(
     override suspend fun getUser(): String {
         val userEntity = mainLocalDataSource.getUser()
         return userEntity?.email ?: ""
+    }
+
+    override suspend fun getVacancies(): Int {
+        val totalVacancies = mainLocalDataSource.getEstablishment()?.vacanciesMarks ?: 0
+        val totalVehicles = vehicleListDataSource.getAllVehicles().size
+        return totalVacancies - totalVehicles
     }
 
     private suspend fun deleteData() {

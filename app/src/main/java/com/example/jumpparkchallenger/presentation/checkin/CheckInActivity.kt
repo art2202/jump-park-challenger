@@ -61,8 +61,8 @@ class CheckInActivity : AppCompatActivity() {
             if(validForm()) {
                 val color = binding.spinnerColor.selectedItem as String
                 val vehicle = Vehicle(
-                    binding.editTextPlate.text,
-                    binding.editTextModel.text,
+                    binding.editTextPlate.text.uppercase(),
+                    binding.editTextModel.text.uppercase(),
                     color,
                     viewModel.prices[binding.spinner.selectedItemPosition - 1],
                     Date()
