@@ -12,6 +12,7 @@ class MainViewModel(private val logoutUseCase: Logout, private val getUserUseCas
 
     val responseLogout = MutableLiveData<Boolean>()
     val responseUserEmail = MutableLiveData<String>()
+
     fun logout(){
         viewModelScope.launch(Dispatchers.IO){
             val result = logoutUseCase()

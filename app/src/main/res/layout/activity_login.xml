@@ -50,10 +50,12 @@
 
 
     <TextView
+        android:id="@+id/firstLoginTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:textSize="15sp"
+        android:padding="10dp"
         android:text="@string/create_account"/>
 
 

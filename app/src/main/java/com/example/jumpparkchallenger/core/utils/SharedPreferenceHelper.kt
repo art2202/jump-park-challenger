@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 open class SharedPreferenceHelper(context: Context) {
     private var sharedPreferencesEditor : SharedPreferences.Editor
     private var sharedPreferences : SharedPreferences
-    private val TAG_TOKEN = "token"
+    private val TAG_TOKEN = "JumpParkChallengerToken"
 
     init {
         sharedPreferencesEditor = context.getSharedPreferences("JumpParkSharedPreferences", Context.MODE_PRIVATE).edit()

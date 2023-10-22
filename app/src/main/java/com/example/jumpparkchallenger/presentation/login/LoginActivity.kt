@@ -2,6 +2,7 @@ package com.example.jumpparkchallenger.presentation.login
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -68,6 +69,10 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners(){
         bindProgressButton(binding.loginButton)
 
+        binding.firstLoginTextView.setOnClickListener{
+            openUrl()
+        }
+
         binding.loginButton.setOnClickListener {
             if(checkLoginInfos()) {
                 binding.loginButton.showProgress {
@@ -94,5 +99,12 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    private fun openUrl(){
+        val url = "https://teste-admin.jumppark.com.br/cadastro-inicial"
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+            startActivity(intent)
     }
 }
