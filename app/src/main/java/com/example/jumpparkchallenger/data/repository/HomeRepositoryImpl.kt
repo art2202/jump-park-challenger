@@ -26,8 +26,18 @@ class HomeRepositoryImpl(
 
         val userEntity = homeLocalDataSource.getUser()
         val establishmentEntity = homeLocalDataSource.getEstablishment()
-        val data = homeDataSource.getData(userEntity?.id ?: 0, establishmentEntity?.id ?: 0)
-        save(data)
+        try {
+            val data = homeDataSource.getData(userEntity?.id ?: 0, establishmentEntity?.id ?: 0)
+            save(data)
+        }
+        catch (e : Exception){
+            return HomeInfos(
+                establishmentEntity!!.vacanciesMarks,
+                vehicleDao.getAllVehicles().size,
+                getPaymentMethods()
+            )
+        }
+
         return HomeInfos(
             establishmentEntity!!.vacanciesMarks,
             vehicleDao.getAllVehicles().size,

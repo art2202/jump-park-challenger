@@ -21,8 +21,13 @@ class MainViewModel(
 
     fun logout(){
         viewModelScope.launch(Dispatchers.IO){
-            val result = logoutUseCase()
-            responseLogout.postValue(result)
+            try {
+                val result = logoutUseCase()
+                responseLogout.postValue(result)
+            }
+            catch (e : Exception){
+                responseLogout.postValue(false)
+            }
         }
     }
 
