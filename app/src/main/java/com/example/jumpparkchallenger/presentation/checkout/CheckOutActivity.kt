@@ -3,11 +3,14 @@ package com.example.jumpparkchallenger.presentation.checkout
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.jumpparkchallenger.R
+import com.example.jumpparkchallenger.core.utils.Formatter
 import com.example.jumpparkchallenger.databinding.ActivityCheckOutBinding
 import com.example.jumpparkchallenger.domain.entities.Vehicle
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
@@ -74,8 +77,9 @@ class CheckOutActivity : AppCompatActivity() {
         val txtTotalValue: TextView = dialogLayout.findViewById(R.id.txt_total_value)
         val radioGroupPaymentMethods: RadioGroup = dialogLayout.findViewById(R.id.radio_group_payment_methods)
         val btnPay: Button = dialogLayout.findViewById(R.id.btn_pay)
+        val btnCancel : ImageView = dialogLayout.findViewById(R.id.btn_cancel)
 
-        txtTotalValue.text = totalValue.toString()
+        txtTotalValue.text = "Valor Total : ${Formatter.format(totalValue)}"
 
         for (paymentMethod in paymentMethods) {
             val radioButton = RadioButton(this)
@@ -88,6 +92,11 @@ class CheckOutActivity : AppCompatActivity() {
 
         val dialog = builder.create()
 
+        dialog.setCanceledOnTouchOutside(true)
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
         btnPay.setOnClickListener {
             val selectedRadioButtonId = radioGroupPaymentMethods.checkedRadioButtonId
 
@@ -99,7 +108,7 @@ class CheckOutActivity : AppCompatActivity() {
                 finish()
                 dialog.dismiss()
             } else {
-                dialog.dismiss()
+                Toast.makeText(this, "Selecione uma forma de pagamento", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -55,6 +55,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun shimmerStart(boolean : Boolean){
+        binding?.paymentRecyclerView?.isVisible = !boolean
         binding?.shimmerView?.showShimmer(boolean)
         binding?.shimmerView?.isVisible = boolean
         binding?.vehicleCoutLinearLayout?.isVisible = !boolean
