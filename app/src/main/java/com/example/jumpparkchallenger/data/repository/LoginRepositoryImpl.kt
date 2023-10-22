@@ -7,7 +7,7 @@ import com.example.jumpparkchallenger.data.mapper.LoginDataResponseToHomeInfosMa
 import com.example.jumpparkchallenger.data.mapper.SessionDataResponseToSessionEntityMapper
 import com.example.jumpparkchallenger.data.mapper.UserDataResponseToUserEntityMapper
 import com.example.jumpparkchallenger.data.models.login.LoginDataResponse
-import com.example.jumpparkchallenger.domain.entities.HomeInfos
+import com.example.jumpparkchallenger.domain.entities.LoginInfos
 import com.example.jumpparkchallenger.domain.repository.LoginRepository
 
 class LoginRepositoryImpl(
@@ -18,7 +18,7 @@ class LoginRepositoryImpl(
     private val sessionDataResponseToSessionEntityMapper: SessionDataResponseToSessionEntityMapper,
     private val establishmentDataResponseToEstablishmentEntityMapper: EstablishmentDataResponseToEstablishmentEntityMapper
 ) : LoginRepository {
-    override suspend fun login(email: String, password: String) : HomeInfos {
+    override suspend fun login(email: String, password: String) : LoginInfos {
         try {
             val data = loginDataSource.login(email, password)
             saveLocal(data)

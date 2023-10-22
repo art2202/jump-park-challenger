@@ -10,7 +10,7 @@ class EstablishmentDataResponseToEstablishmentEntityMapper : Mapper<Establishmen
         return EstablishmentEntity(
             id = input.id ?: 0,
             name = input.name,
-            vacanciesMarks = input.vacanciesMarks
+            vacanciesMarks = input.vacanciesMarks ?: 0
         )
     }
 }

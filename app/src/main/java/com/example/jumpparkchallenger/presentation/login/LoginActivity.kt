@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.errorMessage.observe(this) { message ->
+            binding.loginButton.hideProgress("Enviar")
             message?.let {
                 AlertDialog.Builder(this)
                     .setTitle("Erro ao entrar")

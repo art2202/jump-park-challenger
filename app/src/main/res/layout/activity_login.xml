@@ -18,7 +18,7 @@
 
     <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
         android:id="@+id/emailEditText"
-        app:view_edit_text_title="Nome"
+        app:view_edit_text_title="Email"
         app:view_edit_text_input_type="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

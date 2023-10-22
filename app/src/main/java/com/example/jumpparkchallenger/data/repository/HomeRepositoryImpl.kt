@@ -9,6 +9,7 @@ import com.example.jumpparkchallenger.data.mapper.PaymentMethodResponseToPayment
 import com.example.jumpparkchallenger.data.mapper.PricesResponseToPriceEntityMapper
 import com.example.jumpparkchallenger.data.mapper.ValueResponseToValueEntityMapper
 import com.example.jumpparkchallenger.data.models.home.HomeData
+import com.example.jumpparkchallenger.domain.entities.home.HomeInfos
 import com.example.jumpparkchallenger.domain.entities.home.PaymentMethod
 import com.example.jumpparkchallenger.domain.repository.HomeRepository
 
@@ -21,13 +22,17 @@ class HomeRepositoryImpl(
     private val valueResponseToValueEntityMapper: ValueResponseToValueEntityMapper,
     private val vehicleDao: VehicleDao
 ) : HomeRepository {
-    override suspend fun getData(): Pair<Int, List<PaymentMethod>> {
+    override suspend fun getData(): HomeInfos {
 
         val userEntity = homeLocalDataSource.getUser()
         val establishmentEntity = homeLocalDataSource.getEstablishment()
         val data = homeDataSource.getData(userEntity?.id ?: 0, establishmentEntity?.id ?: 0)
         save(data)
-        return Pair(vehicleDao.getAllVehicles().size, getPaymentMethods())
+        return HomeInfos(
+            establishmentEntity!!.vacanciesMarks,
+            vehicleDao.getAllVehicles().size,
+            getPaymentMethods()
+        )
     }
 
     private suspend fun getPaymentMethods(): List<PaymentMethod> {

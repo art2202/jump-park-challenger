@@ -10,5 +10,5 @@ data class EstablishmentEntity(
     val id: Int,
     val name: String?,
     @ColumnInfo(name = "vacancies")
-    val vacanciesMarks: Int?
+    val vacanciesMarks: Int
 )
