@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:view_edit_text_title="Placa"
+                app:view_edit_text_max_length="7"
                 android:inputType="text" />
 
             <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView

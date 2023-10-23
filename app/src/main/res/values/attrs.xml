@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="FormItemEditTextView">
+        <attr name="view_edit_text_enabled" format="boolean"/>
         <attr name="view_edit_text_title" format="string" localization="suggested" />
         <attr name="view_edit_text_hint" format="string" localization="suggested" />
         <attr name="view_edit_text_max_length" format="integer" />

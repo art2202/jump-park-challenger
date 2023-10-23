@@ -40,101 +40,42 @@
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp"
-            android:layout_marginHorizontal="10dp"
-            app:layout_constraintTop_toBottomOf="@id/carTextView">
 
-            <LinearLayout
+            <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
+                android:id="@+id/checkinDateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:orientation="horizontal">
+                android:clickable="false"
+                app:view_edit_text_title="Entrada"
+                app:view_edit_text_enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/carTextView"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toTopOf="@id/totalTimeTextView"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="Entrada"
-                    android:textColor="@color/black"
-                    android:paddingBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/checkinDateTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="22/11/2023" />
-            </LinearLayout>
-
-            <LinearLayout
+            <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
+                android:id="@+id/totalTimeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:orientation="horizontal">
+                app:view_edit_text_title="Permanência"
+                app:view_edit_text_enabled="false"
+                app:layout_constraintTop_toBottomOf="@id/checkinDateTextView"
+                app:layout_constraintBottom_toTopOf="@id/tableTextView"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:textSize="20sp"
-                    android:text="Permanência"
-
-                    android:textColor="@color/black"
-                    android:paddingBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/totalTimeTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="22/11/2023" />
-            </LinearLayout>
-
-            <LinearLayout
+            <com.example.jumpparkchallenger.presentation.widget.FormItemEditTextView
+                android:id="@+id/tableTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="Tabela"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:paddingBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tableTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="Rotativo" />
-            </LinearLayout>
-        </LinearLayout>
-
+                app:view_edit_text_enabled="false"
+                app:view_edit_text_title="Tabela"
+                app:layout_constraintTop_toBottomOf="@id/totalTimeTextView"/>
 
 
         <TextView
+            android:id="@+id/totalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/colorJumpPark"
             android:layout_gravity="center|bottom"
@@ -149,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="R$20,00"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_gravity="center|bottom"

@@ -50,7 +50,8 @@ open class FormItemEditTextView(context: Context, attrs: AttributeSet? = null) :
             val style = context.obtainStyledAttributes(attrs, R.styleable.FormItemEditTextView, 0, 0)
             val maxLength = style.getInt(R.styleable.FormItemEditTextView_view_edit_text_max_length, 50)
             val inputType = style.getInt(R.styleable.FormItemEditTextView_view_edit_text_input_type, InputType.TYPE_CLASS_TEXT)
-
+            val isEnabled = style.getBoolean(R.styleable.FormItemEditTextView_view_edit_text_enabled, true)
+            edtText.isEnabled = isEnabled
             txtTitle.text = style.getString(R.styleable.FormItemEditTextView_view_edit_text_title)
             edtText.hint = style.getString(R.styleable.FormItemEditTextView_view_edit_text_hint)
             edtText.filters = arrayOf(*edtText.filters, InputFilter.LengthFilter(maxLength))
