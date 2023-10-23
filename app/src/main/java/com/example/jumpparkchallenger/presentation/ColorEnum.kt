@@ -8,7 +8,7 @@ enum class ColorEnum(val nome: String, val hexValue: String) {
     LARANJA("Laranja", "#FFA500"),
     ROXO("Roxo", "#800080"),
     ROSA("Rosa", "#FFC0CB"),
-    CINZA("Cinzento", "#808080"),
+    CINZA("Cinza", "#808080"),
     PRETO("Preto", "#000000"),
     BRANCO("Branco", "#FFFFFF");
 
