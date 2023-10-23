@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jumpparkchallenger.databinding.FragmentVehicleListBinding
@@ -29,9 +30,13 @@ class VehicleListFragment : Fragment() {
     }
 
     private fun initView(vehicleList: List<Vehicle>?) {
-        binding?.recyclerViewVehicles?.layoutManager = LinearLayoutManager(requireContext())
         val adapter = VehicleAdapter(vehicleList ?: listOf(), ::openCheckOutActivity)
+        binding?.recyclerViewVehicles?.layoutManager = LinearLayoutManager(requireContext())
+
         binding?.recyclerViewVehicles?.adapter = adapter
+        binding?.recyclerViewVehicles?.adapter?.notifyDataSetChanged()
+
+        binding?.placeholder?.isVisible = vehicleList?.isEmpty() == true
     }
 
     override fun onDestroyView() {

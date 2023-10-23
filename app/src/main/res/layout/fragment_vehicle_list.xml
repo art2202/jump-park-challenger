@@ -6,6 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.vehicle_list.VehicleListFragment">
 
+    <ImageView
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:src="@drawable/placeholder"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_vehicles"
         android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.example.jumpparkchallenger.R
 import com.example.jumpparkchallenger.databinding.ActivityLoginBinding
@@ -29,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         viewModel.checkToken()
         viewModel.tokenExists.observe(this){hasToken ->
@@ -105,6 +108,6 @@ class LoginActivity : AppCompatActivity() {
         val url = "https://teste-admin.jumppark.com.br/cadastro-inicial"
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
-            startActivity(intent)
+        startActivity(intent)
     }
 }
