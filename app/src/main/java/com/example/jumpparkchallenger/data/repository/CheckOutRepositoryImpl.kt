@@ -47,12 +47,14 @@ class CheckOutRepositoryImpl(
         for (item in sortedItems) {
             if (remainingTime <= 0) break
 
-            if (remainingTime <= item.period) {
+            while (remainingTime > item.period) {
+                totalCost += item.price.toDouble()
+                remainingTime -= item.period
+            }
+
+            if (remainingTime > 0 && remainingTime <= item.period) {
                 totalCost += item.price.toDouble()
                 break
-            } else {
-                remainingTime -= item.period
-                totalCost += item.price.toDouble()
             }
         }
 
